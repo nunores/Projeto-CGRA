@@ -66,7 +66,9 @@ class MyCylinder extends CGFobject {
         // reinitialize buffers
         this.initBuffers();
     }
-    display()
+    display(){
+        
+    }
 }
 
 
