@@ -10,5 +10,5 @@ Realizamos este projeto no âmbito da unidade curricular de Computação Gráfic
 
 ## Collborators
 
-João Gonçalves - up201806796 //
+João Gonçalves - up201806796\
 Nuno Resende - up201806825
