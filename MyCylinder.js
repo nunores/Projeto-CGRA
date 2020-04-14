@@ -26,16 +26,36 @@ class MyCylinder extends CGFobject {
             var ca=Math.cos(ang);
             var caa=Math.cos(ang+alphaAng);
 
-            //this.vertices.push(0,1,0);
-            this.vertices.push(ca, 0, -sa);
-            this.vertices.push(caa, 0, -saa);
+            this.vertices.push(ca, 0, -sa);     // 0
+            this.vertices.push(caa, 0, -saa);   // 1
+            this.vertices.push(ca, 1, -sa);     // 2
+            
+            this.vertices.push(ca, 0, -sa);     // 3
+            this.vertices.push(caa, 0, -saa);   // 4
+            this.vertices.push(caa, 1, -saa);   // 5
 
             // triangle normal computed by cross product of two edges
-            var normal= [
+
+            /*
+            this.normals = [];
+            for (int i = 0; i < 6; i++)
+            {
+                this.normals.push(Math.cos(ang), 0, Math.sin(ang));
+            }
+            */
+
+            /* var normal= [
                 saa-sa,
                 ca*saa-sa*caa,
                 caa-ca
+            ]; */
+
+            var normal= [
+                ca,
+                0,
+                sa
             ];
+
 
             // normalization
             var nsize=Math.sqrt(
@@ -43,16 +63,19 @@ class MyCylinder extends CGFobject {
                 normal[1]*normal[1]+
                 normal[2]*normal[2]
                 );
+
             normal[0]/=nsize;
             normal[1]/=nsize;
             normal[2]/=nsize;
 
             // push normal once for each vertex of this triangle
-            this.normals.push(...normal);
-            this.normals.push(...normal);
-            this.normals.push(...normal);
+            for(var i = 0; i < 6; i++){
+                this.normals.push(Math.cos(ang), 0, Math.sin(ang));
+            }   
 
-            this.indices.push(3*i, (3*i+1) , (3*i+2) );
+            this.indices.push(3*i, (3*i+1) , (3*i+2));
+            this.indices.push((3*i+3), (3*i+4) , (3*i+5));
+
 
             ang+=alphaAng;
         }
