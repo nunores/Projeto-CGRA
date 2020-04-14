@@ -73,7 +73,7 @@ class MyScene extends CGFscene {
 
         // ---- BEGIN Primitive drawing section
 
-        if(displayCylinder){
+        if(this.displayCylinder){
             this.cylinder.display();
         }
 
