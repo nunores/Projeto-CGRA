@@ -70,7 +70,7 @@ class MyScene extends CGFscene {
     }
 
     updateTexture() {
-        this.cubeMap.updateTexture();
+        this.cubemap.updateTexture();
     }
 
     display() {
@@ -93,6 +93,7 @@ class MyScene extends CGFscene {
         // ---- BEGIN Primitive drawing section
 
         if(this.displayCylinder){
+            // Testing purposes
             this.incompleteSphereMaterial.apply();
             this.cylinder.display();
         }
