@@ -84,7 +84,6 @@ class MyScene extends CGFscene {
         // ---- BEGIN Primitive drawing section
 
         if(this.displayCylinder){
-            this.cylinder.enableNormalViz();
             this.cylinder.display();
         }
 
@@ -94,8 +93,10 @@ class MyScene extends CGFscene {
             this.incompleteSphere.display();
         }
 
-        if(this.displayCubeMap)
+        if(this.displayCubeMap){
+            
             this.cubemap.display();
+        }
 
         // ---- END Primitive drawing section
     }

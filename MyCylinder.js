@@ -15,7 +15,7 @@ class MyCylinder extends CGFobject {
 
         var ang = 0;
         var alphaAng = 2*Math.PI/this.slices;
-        var alphaAng2 = alphaAng/2;
+        var alphaAng2 = Math.PI/this.slices;
 
         // Vértices de cima e de baixo
 
@@ -41,24 +41,19 @@ class MyCylinder extends CGFobject {
 
             this.vertices.push(ca, 0, -sa);     // 12*i+2
             this.vertices.push(caa, 0, -saa);   // 12*i+3
-            this.vertices.push(ca, 1, -sa);     // 12*i+4       //X
+            this.vertices.push(ca, 1, -sa);     // 12*i+4
             this.vertices.push(caa, 1, -saa);   // 12*i+5
-
-            this.vertices.push(ca, 0, -sa);     // 12*i+6
-            this.vertices.push(caa, 0, -saa);   // 12*i+7
-            this.vertices.push(ca, 1, -sa);     // 12*i+8       //Y
-            this.vertices.push(caa, 1, -saa);   // 12*i+9
-
-            this.vertices.push(ca, 0, -sa);     // 12*i+10
-            this.vertices.push(caa, 0, -saa);   // 12*i+11
-            this.vertices.push(ca, 1, -sa);     // 12*i+12      //Z
-            this.vertices.push(caa, 1, -saa);   // 12*i+13
+            this.vertices.push(caa, 0, -saa);   // 12*i+6
+            this.vertices.push(ca, 1, -sa);     // 12*i+7
 
             // ------------------------------------------------------------
 
-            //this.normals.push(Math.cos(Math.PI/3), 0, Math.sin(Math.PI/3));
-            this.normals.push(caa-ca, 0, saa-sa);
-
+            this.normals.push(Math.cos(2*Math.PI - (ang + alphaAng2)), 0, Math.sin(2*Math.PI - (ang + alphaAng2)));
+            this.normals.push(Math.cos(2*Math.PI - (ang + alphaAng2)), 0, Math.sin(2*Math.PI - (ang + alphaAng2)));
+            this.normals.push(Math.cos(2*Math.PI - (ang + alphaAng2)), 0, Math.sin(2*Math.PI - (ang + alphaAng2)));
+            this.normals.push(Math.cos(2*Math.PI - (ang + alphaAng2)), 0, Math.sin(2*Math.PI - (ang + alphaAng2)));
+            this.normals.push(0,-1,0);
+            this.normals.push(0,1,0);
             
             // for (var m = 0; m < 4; m++)
             // {
@@ -83,11 +78,6 @@ class MyCylinder extends CGFobject {
             //this.normals.push(Math.cos(alphaAng),0,-Math.sin(alphaAng));
             //this.normals.push(Math.cos(alphaAng),0,-Math.sin(alphaAng));
             //this.normals.push(Math.cos(alphaAng),0,-Math.sin(alphaAng));
-
-            for (var k=0; k<11; k++)
-            {
-                this.normals.push(0,0,0);
-            }
             
             /*
             this.normals = [];
@@ -128,19 +118,19 @@ class MyCylinder extends CGFobject {
             
             // Índices de cima e de baixo ---------------------------------------
 
-            this.indices.push(12*i+2, 0, 12*i+3);
+            this.indices.push(6*i+2, 0, 6*i+3);
 
-            this.indices.push(12*i+5, 1, 12*i+4);
+            this.indices.push(6*i+5, 1, 6*i+4);
 
             // -------------------------------------------------------------------
 
             // Índices laterais --------------------------------------------------
             
-            this.indices.push((12*i+2), (12*i+3), (12*i+4));
-            this.indices.push((12*i+4), (12*i+3), (12*+2));
+            this.indices.push((6*i+2), (6*i+3), (6*i+4));
+            this.indices.push((6*i+4), (6*i+3), (6*+2));
 
-            this.indices.push((12*i+4), (12*i+3), (12*i+5));
-            this.indices.push((12*i+5), (12*i+3), (12*i+4));
+            this.indices.push((6*i+4), (6*i+3), (6*i+5));
+            this.indices.push((6*i+5), (6*i+3), (6*i+4));
 
             // --------------------------------------------------------------------
 
