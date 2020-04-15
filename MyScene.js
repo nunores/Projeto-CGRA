@@ -28,10 +28,18 @@ class MyScene extends CGFscene {
         this.incompleteSphere = new MySphere(this, 16, 8);
         this.cylinder = new MyCylinder(this, 6); // Modify to slider for number of slices
 
+        // Textures and Materials
+        this.incompleteSphereMaterial = new CGFappearance(this);
+        this.incompleteSphereMaterial.setAmbient(0.1, 0.1, 0.1, 1);
+        this.incompleteSphereMaterial.setDiffuse(0.9, 0.9, 0.9, 1); // Setting default values from other exercises
+        this.incompleteSphereMaterial.setSpecular(0.1, 0.1, 0.1, 1);
+        this.incompleteSphereMaterial.setShininess(10.0);
+        this.incompleteSphereMaterial.loadTexture("images/earth.jpg");
+
         //Objects connected to MyInterface
         this.displayAxis = true;
-        this.displayIncompleteSphere = false;
-        this.displayCylinder = true;
+        this.displayIncompleteSphere = true;
+        this.displayCylinder = false;
         
     }
     initLights() {
@@ -79,8 +87,10 @@ class MyScene extends CGFscene {
         }
 
         //This sphere does not have defined texture coordinates
-        if(this.displayIncompleteSphere)
+        if(this.displayIncompleteSphere){
+            this.incompleteSphereMaterial.apply();
             this.incompleteSphere.display();
+        }
 
         // ---- END Primitive drawing section
     }

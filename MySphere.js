@@ -2,8 +2,8 @@ class MySphere extends CGFobject {
   /**
    * @method constructor
    * @param  {CGFscene} scene - MyScene object
-   * @param  {integer} slices - number of slices around Y axis
-   * @param  {integer} stacks - number of stacks along Y axis, from the center to the poles (half of sphere)
+   * @param  {integer} slices - number of slices around Y axis (fatias em X)
+   * @param  {integer} stacks - number of stacks along Y axis, from the center to the poles (half of sphere) (fatias em Y)
    */
   constructor(scene, slices, stacks) {
     super(scene);
@@ -68,6 +68,9 @@ class MySphere extends CGFobject {
         // To be done... 
         // May need some additional code also in the beginning of the function.
         
+        this.texCoords.push(longitude / this.longDivs, latitude / this.latDivs);
+
+
       }
       phi += phiInc;
     }
