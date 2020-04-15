@@ -16,8 +16,6 @@ class MyCylinder extends CGFobject {
         var ang = 0;
         var alphaAng = 2*Math.PI/this.slices;
 
-        console.log("AlphaAng: ", alphaAng);
-
         for(var i = 0; i < this.slices; i++){
             // All vertices have to be declared for a given face
             // even if they are shared with others, as the normals 
@@ -52,26 +50,26 @@ class MyCylinder extends CGFobject {
                 caa-ca
             ]; */
 
-            var normal= [
-                ca,
-                0,
-                sa
-            ];
+            // var normal= [
+            //     ca,
+            //     0,
+            //     sa
+            // ];
 
 
-            // normalization
-            var nsize=Math.sqrt(
-                normal[0]*normal[0]+
-                normal[1]*normal[1]+
-                normal[2]*normal[2]
-                );
+            // // normalization
+            // var nsize=Math.sqrt(
+            //     normal[0]*normal[0]+
+            //     normal[1]*normal[1]+
+            //     normal[2]*normal[2]
+            //     );
 
-            normal[0]/=nsize;
-            normal[1]/=nsize;
-            normal[2]/=nsize;
+            // normal[0]/=nsize;
+            // normal[1]/=nsize;
+            // normal[2]/=nsize;
 
             //push normal once for each vertex of this triangle
-            for(var i = 0; i < 6; i++){
+            for(var n = 0; n < 6; n++){
                 this.normals.push(Math.cos(ang), 0, Math.sin(ang));
             }   
 
