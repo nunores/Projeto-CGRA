@@ -31,15 +31,21 @@ class MyCylinder extends CGFobject {
             // console.log("CA: ", ca);
             // console.log("CAA: ", caa);
 
-            this.vertices.push(ca, 0, -sa);     // 0 / 6
-            this.vertices.push(caa, 0, -saa);   // 1
-            this.vertices.push(ca, 1, -sa);     // 2
-            
-            this.vertices.push(ca, 1, -sa);     // 3
-            this.vertices.push(caa, 0, -saa);   // 4
-            this.vertices.push(caa, 1, -saa);   // 5
+            // Vértices laterais -----------------------------------------
 
-            // triangle normal computed by cross product of two edges
+            this.vertices.push(ca, 0, -sa);     // 8*i
+            this.vertices.push(caa, 0, -saa);   // 8*i+1
+            this.vertices.push(ca, 1, -sa);     // 8*i+2
+            
+            this.vertices.push(ca, 1, -sa);     // 8*i+3
+            this.vertices.push(caa, 0, -saa);   // 8*i+4
+            this.vertices.push(caa, 1, -saa);   // 8*i+5
+
+            this.vertices.push(0, 0, 0);        // 8*i+6
+            this.vertices.push(0, 1, 0);        // 8*i+7
+
+            // ------------------------------------------------------------
+
 
             /*
             this.normals = [];
@@ -73,21 +79,23 @@ class MyCylinder extends CGFobject {
             // normal[1]/=nsize;
             // normal[2]/=nsize;
 
-            //push normal once for each vertex of this triangle
-            for(var n = 0; n < 6; n++){
-                this.normals.push(Math.cos(ang), 0, Math.sin(ang));
-            }   
+            // //push normal once for each vertex of this triangle
+            // for(var n = 0; n < 6; n++){
+            //     this.normals.push(Math.cos(ang), 0, Math.sin(ang));
+            // }   
 
-            // Isto tá mal, temos de ver como fazer os índices
+            this.indices.push(8*i, 8*i+6, 8*i+1);
+            //this.indices.push(8*i+1, 8*i+6, 8*i);
 
-            //this.indices.push(3*i, (3*i+1) , (3*i+2));
-            //this.indices.push((3*i+3), (3*i+4) , (3*i+5));
+            // Índices laterais --------------------------------------------------
+            
+            this.indices.push(8*i, (8*i+1), (8*i+2));
+            this.indices.push((8*i+2), (8*i+1), (8*i));
 
-            this.indices.push(6*i, (6*i+1), (6*i+2));
-            this.indices.push((6*i+3), (6*i+4), (6*i+5));
+            this.indices.push((8*i+3), (8*i+4), (8*i+5));
+            this.indices.push((8*i+5), (8*i+4), (8*i+3));
 
-            this.indices.push((6*i+3), (6*i+4), (6*i+5));
-            this.indices.push((6*i+5), (6*i+4), (6*i+3));
+            // --------------------------------------------------------------------
 
             ang+=alphaAng;
         }

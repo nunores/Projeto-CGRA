@@ -71,6 +71,7 @@ class MyScene extends CGFscene {
             this.axis.display();
 
         this.setDefaultAppearance();
+        //this.enableNormalViz();
 
         // ---- BEGIN Primitive drawing section
 
