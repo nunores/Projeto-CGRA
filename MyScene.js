@@ -26,8 +26,9 @@ class MyScene extends CGFscene {
         //Initialize scene objects
         this.axis = new CGFaxis(this);
         this.incompleteSphere = new MySphere(this, 16, 8);
-        this.cylinder = new MyCylinder(this, 6); // Modify to slider for number of slices
-
+        this.cylinder = new MyCylinder(this, 6);
+        this.cubemap = new MyCubeMap(this);
+        
         // Textures and Materials
         this.incompleteSphereMaterial = new CGFappearance(this);
         this.incompleteSphereMaterial.setAmbient(0.1, 0.1, 0.1, 1);
@@ -38,8 +39,9 @@ class MyScene extends CGFscene {
 
         //Objects connected to MyInterface
         this.displayAxis = true;
-        this.displayIncompleteSphere = true;
+        this.displayIncompleteSphere = false;
         this.displayCylinder = false;
+        this.displayCubeMap = true;
         
     }
     initLights() {

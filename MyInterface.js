@@ -23,6 +23,9 @@ class MyInterface extends CGFinterface {
 
         this.gui.add(this.scene, 'displayCylinder').name('Display Cylinder');
 
+        this.gui.add(this.scene, 'displayCubeMap').name('Display CubeMap');
+
+
         return true;
     }
 }
