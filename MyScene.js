@@ -26,7 +26,7 @@ class MyScene extends CGFscene {
         //Initialize scene objects
         this.axis = new CGFaxis(this);
         this.incompleteSphere = new MySphere(this, 16, 8);
-        this.cylinder = new MyCylinder(this, 6);
+        this.cylinder = new MyCylinder(this, 4);
         this.cubemap = new MyCubeMap(this);
         
         // Textures and Materials
@@ -42,7 +42,7 @@ class MyScene extends CGFscene {
         this.displayIncompleteSphere = false;
         this.displayCylinder = false;
         this.displayCubeMap = true;
-        
+
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
