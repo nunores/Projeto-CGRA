@@ -26,7 +26,7 @@ class MyScene extends CGFscene {
         //Initialize scene objects
         this.axis = new CGFaxis(this);
         this.incompleteSphere = new MySphere(this, 16, 8);
-        this.cylinder = new MyCylinder(this, 4); // Modify to slider for number of slices
+        this.cylinder = new MyCylinder(this, 6); // Modify to slider for number of slices
 
         //Objects connected to MyInterface
         this.displayAxis = true;

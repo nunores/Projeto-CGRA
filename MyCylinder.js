@@ -15,6 +15,7 @@ class MyCylinder extends CGFobject {
 
         var ang = 0;
         var alphaAng = 2*Math.PI/this.slices;
+        var alphaAng2 = alphaAng/2;
 
         // Vértices de cima e de baixo
 
@@ -35,7 +36,6 @@ class MyCylinder extends CGFobject {
             var ca=Math.cos(ang);
             var caa=Math.cos(ang+alphaAng);
 
-            ang+=alphaAng;
 
             // Vértices laterais -----------------------------------------
 
@@ -56,26 +56,39 @@ class MyCylinder extends CGFobject {
 
             // ------------------------------------------------------------
 
+            //this.normals.push(Math.cos(Math.PI/3), 0, Math.sin(Math.PI/3));
+            this.normals.push(caa-ca, 0, saa-sa);
+
+            
             // for (var m = 0; m < 4; m++)
             // {
             //     this.normals.push(Math.cos(ang), 0, -Math.sin(ang+alphaAng));
             // }
 
-            this.normals.push(Math.cos(ang),0,-Math.sin(ang+alphaAng));
-            this.normals.push(Math.cos(ang),0,-Math.sin(ang+alphaAng));
-            this.normals.push(Math.cos(ang),0,-Math.sin(ang+alphaAng));
-            this.normals.push(Math.cos(ang),0,-Math.sin(ang+alphaAng));
+            /*if (i < this.slices/2)
+                this.normals.push(Math.cos(alphaAng2), 0, -Math.sin(alphaAng2));
+            else
+            {
+                    
+                
+                this.normals.push(Math.cos(alphaAng2 + Math.PI), 0, Math.sin(alphaAng2));
+            }
+            
+            console.log("ANG: ", ang);
+            
+            console.log("X: ", Math.cos(ang));
+            console.log("Y: ", 0);
+            console.log("Z: ", -Math.sin(alphaAng));*/
 
-            for (var k=0; k<8; k++)
+            //this.normals.push(Math.cos(alphaAng),0,-Math.sin(alphaAng));
+            //this.normals.push(Math.cos(alphaAng),0,-Math.sin(alphaAng));
+            //this.normals.push(Math.cos(alphaAng),0,-Math.sin(alphaAng));
+
+            for (var k=0; k<11; k++)
             {
                 this.normals.push(0,0,0);
             }
             
-
-
-
-
-
             /*
             this.normals = [];
             for (int i = 0; i < 6; i++)
@@ -131,7 +144,7 @@ class MyCylinder extends CGFobject {
 
             // --------------------------------------------------------------------
 
-            //ang+=alphaAng;
+            ang+=alphaAng;
         }
 
         this.primitiveType = this.scene.gl.TRIANGLES;
