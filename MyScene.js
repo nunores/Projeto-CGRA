@@ -46,7 +46,8 @@ class MyScene extends CGFscene {
         this.displayCubeMap = true;
 
         this.selectedTexture = 0;
-        this.textureIds = { 'Mountains': 0, 'To Be Defined': 1 };
+        console.log(this.selectedTexture);
+        this.textureIds = { 'Default': 0, 'Volcano': 1 };
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
