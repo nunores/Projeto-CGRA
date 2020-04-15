@@ -68,7 +68,7 @@ class MyCylinder extends CGFobject {
             normal[1]/=nsize;
             normal[2]/=nsize;
 
-            // push normal once for each vertex of this triangle
+            //push normal once for each vertex of this triangle
             for(var i = 0; i < 6; i++){
                 this.normals.push(Math.cos(ang), 0, Math.sin(ang));
             }   
@@ -81,6 +81,7 @@ class MyCylinder extends CGFobject {
         }
 
         this.primitiveType = this.scene.gl.TRIANGLES;
+        this.initGLBuffers();
     }
     
     updateBuffers(slices_to_update){
