@@ -94,6 +94,9 @@ class MyScene extends CGFscene {
             this.incompleteSphere.display();
         }
 
+        if(this.displayCubeMap)
+            this.cubemap.display();
+
         // ---- END Primitive drawing section
     }
 }
