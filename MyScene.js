@@ -36,6 +36,8 @@ class MyScene extends CGFscene {
         this.incompleteSphereMaterial.setSpecular(0.1, 0.1, 0.1, 1);
         this.incompleteSphereMaterial.setShininess(10.0);
         this.incompleteSphereMaterial.loadTexture("images/earth.jpg");
+        this.incompleteSphereMaterial.setTextureWrap('REPEAT', 'REPEAT');
+
 
         //Objects connected to MyInterface
         this.displayAxis = true;
@@ -43,6 +45,8 @@ class MyScene extends CGFscene {
         this.displayCylinder = false;
         this.displayCubeMap = true;
 
+        this.selectedTexture = 0;
+        this.textureIds = { 'Mountains': 0, 'To Be Defined': 1 };
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -62,6 +66,10 @@ class MyScene extends CGFscene {
     // called periodically (as per setUpdatePeriod() in init())
     update(t){
         //To be done...
+    }
+
+    updateTexture() {
+        this.cubeMap.updateTexture();
     }
 
     display() {
@@ -84,6 +92,7 @@ class MyScene extends CGFscene {
         // ---- BEGIN Primitive drawing section
 
         if(this.displayCylinder){
+            this.incompleteSphereMaterial.apply();
             this.cylinder.display();
         }
 
@@ -94,7 +103,6 @@ class MyScene extends CGFscene {
         }
 
         if(this.displayCubeMap){
-            
             this.cubemap.display();
         }
 
