@@ -16,7 +16,7 @@ class MyCylinder extends CGFobject {
         var ang = 0;
         var alphaAng = 2*Math.PI/this.slices;
 
-        for(var i = 0; i < this.slices; i++){
+        for(var i = 0; i <= this.slices; i++){
             // All vertices have to be declared for a given face
             // even if they are shared with others, as the normals 
             // in each face will be different
@@ -26,11 +26,16 @@ class MyCylinder extends CGFobject {
             var ca=Math.cos(ang);
             var caa=Math.cos(ang+alphaAng);
 
-            this.vertices.push(ca, 0, -sa);     // 0
+            // console.log("SA: ", sa);
+            // console.log("SAA: ", saa);
+            // console.log("CA: ", ca);
+            // console.log("CAA: ", caa);
+
+            this.vertices.push(ca, 0, -sa);     // 0 / 6
             this.vertices.push(caa, 0, -saa);   // 1
             this.vertices.push(ca, 1, -sa);     // 2
             
-            this.vertices.push(ca, 0, -sa);     // 3
+            this.vertices.push(ca, 1, -sa);     // 3
             this.vertices.push(caa, 0, -saa);   // 4
             this.vertices.push(caa, 1, -saa);   // 5
 
@@ -78,8 +83,8 @@ class MyCylinder extends CGFobject {
             //this.indices.push(3*i, (3*i+1) , (3*i+2));
             //this.indices.push((3*i+3), (3*i+4) , (3*i+5));
 
-            this.indices.push(0, 1, 2);
-            this.indices.push(3, 4, 5);
+            this.indices.push(i, i+1, i+2);
+            this.indices.push(i+3, i+4, i+5);
 
             ang+=alphaAng;
         }
