@@ -75,21 +75,19 @@ class MyCylinder extends CGFobject {
                 this.normals.push(Math.cos(ang), 0, Math.sin(ang));
             }   
 
-            this.indices.push(3*i, (3*i+1) , (3*i+2));
-            this.indices.push((3*i+3), (3*i+4) , (3*i+5));
+            // Isto tá mal, temos de ver como fazer os índices
+
+            //this.indices.push(3*i, (3*i+1) , (3*i+2));
+            //this.indices.push((3*i+3), (3*i+4) , (3*i+5));
+
+            this.indices.push(0, 1, 2);
+            this.indices.push(3, 4, 5);
 
             ang+=alphaAng;
         }
 
         this.primitiveType = this.scene.gl.TRIANGLES;
         this.initGLBuffers();
-    }
-    
-    updateBuffers(slices_to_update){
-        this.slices = 3 + slices_to_update; //complexity varies 0-1, so slices varies 3-12
-
-        // reinitialize buffers
-        this.initBuffers();
     }
 }
 
