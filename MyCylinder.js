@@ -41,6 +41,11 @@ class MyCylinder extends CGFobject {
             this.vertices.push(caa, 0, -saa);   // 8*i+4
             this.vertices.push(caa, 1, -saa);   // 8*i+5
 
+            // ------------------------------------------------------------
+
+
+            // Vértices de cima e de baixo ---------------------------------
+
             this.vertices.push(0, 0, 0);        // 8*i+6
             this.vertices.push(0, 1, 0);        // 8*i+7
 
@@ -82,10 +87,15 @@ class MyCylinder extends CGFobject {
             // //push normal once for each vertex of this triangle
             // for(var n = 0; n < 6; n++){
             //     this.normals.push(Math.cos(ang), 0, Math.sin(ang));
-            // }   
+            // }
+            
+            // Índices de cima e de baixo ---------------------------------------
 
             this.indices.push(8*i, 8*i+6, 8*i+1);
-            //this.indices.push(8*i+1, 8*i+6, 8*i);
+
+            this.indices.push(8*i+4, 8*i+7, 8*i+3);
+
+            // -------------------------------------------------------------------
 
             // Índices laterais --------------------------------------------------
             
