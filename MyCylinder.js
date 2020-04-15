@@ -84,7 +84,10 @@ class MyCylinder extends CGFobject {
             //this.indices.push((3*i+3), (3*i+4) , (3*i+5));
 
             this.indices.push(i, i+1, i+2);
+            this.indices.push(i+2, i+1, i);
+
             this.indices.push(i+3, i+4, i+5);
+            this.indices.push(i+5, i+4, i+3);
 
             ang+=alphaAng;
         }
