@@ -14,7 +14,9 @@ class MyCylinder extends CGFobject {
         this.normals = [];
 
         var ang = 0;
-        var alphaAng = 2*Math.PI/this.slice;
+        var alphaAng = 2*Math.PI/this.slices;
+
+        console.log("AlphaAng: ", alphaAng);
 
         for(var i = 0; i < this.slices; i++){
             // All vertices have to be declared for a given face
@@ -75,7 +77,6 @@ class MyCylinder extends CGFobject {
 
             this.indices.push(3*i, (3*i+1) , (3*i+2));
             this.indices.push((3*i+3), (3*i+4) , (3*i+5));
-
 
             ang+=alphaAng;
         }
