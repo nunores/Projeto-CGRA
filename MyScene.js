@@ -33,7 +33,6 @@ class MyScene extends CGFscene {
         this.displayIncompleteSphere = false;
         this.displayCylinder = true;
         
-
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -71,11 +70,11 @@ class MyScene extends CGFscene {
             this.axis.display();
 
         this.setDefaultAppearance();
-        //this.enableNormalViz();
 
         // ---- BEGIN Primitive drawing section
 
         if(this.displayCylinder){
+            this.cylinder.enableNormalViz();
             this.cylinder.display();
         }
 
