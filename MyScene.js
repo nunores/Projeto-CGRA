@@ -28,6 +28,7 @@ class MyScene extends CGFscene {
         this.incompleteSphere = new MySphere(this, 16, 8);
         this.cylinder = new MyCylinder(this, 4);
         this.cubemap = new MyCubeMap(this);
+        this.vehicle = new MyVehicle(this);
         
         // Textures and Materials
         this.incompleteSphereMaterial = new CGFappearance(this);
@@ -43,7 +44,8 @@ class MyScene extends CGFscene {
         this.displayAxis = true;
         this.displayIncompleteSphere = false;
         this.displayCylinder = false;
-        this.displayCubeMap = true;
+        this.displayCubeMap = false;
+        this.displayVehicle = true;
 
         this.selectedTexture = 0;
         console.log(this.selectedTexture);
@@ -107,6 +109,11 @@ class MyScene extends CGFscene {
         if(this.displayCubeMap){
             this.cubemap.display();
         }
+
+        if(this.displayVehicle){
+            this.vehicle.display();
+        }
+
 
         // ---- END Primitive drawing section
     }

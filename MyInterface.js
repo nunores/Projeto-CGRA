@@ -25,9 +25,11 @@ class MyInterface extends CGFinterface {
 
         this.gui.add(this.scene, 'displayCubeMap').name('Display CubeMap');
 
+        this.gui.add(this.scene, 'displayVehicle').name('Display Vehicle');
 
         this.gui.add(this.scene, 'selectedTexture', this.scene.textureIds).name('Map Texture').onChange(this.scene.updateTexture.bind(this.scene));
 
+        
 
         return true;
     }
