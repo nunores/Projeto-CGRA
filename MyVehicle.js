@@ -10,14 +10,15 @@ class MyVehicle extends CGFobject {
 	}
 	initBuffers() {
 		this.vertices = [
-			-1, 1, 0,	//0
-			-1, -1, 0,	//1
-			1, -1, 0,	//2
+			0, 0, Math.sqrt(2)/4,	//0
+			Math.sqrt(2)/2, 0, -Math.sqrt(2)/4,	//1
+			-Math.sqrt(2)/2, 0, -Math.sqrt(2)/4,	//2
 		];
 
 		//Counter-clockwise reference of vertices
 		this.indices = [
-			0, 1, 2,
+            0, 1, 2,
+            2, 1, 0
 		];
 
 		//The defined indices (and corresponding vertices)
