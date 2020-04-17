@@ -40,17 +40,14 @@ class MyVehicle extends CGFobject {
 	}
 	accelerate(val){
 		this.velocity += val;
+		console.log("Velocity: ", this.velocity);
 	}
 	reset() {
 		this.velocity = 0;
         this.orientationAngle = 0;
-        resetPosition();
-	}
-	resetPosition(){
-		this.position.x = 0;
-		this.position.y = 0;
-		this.position.z = 0;
-
+		this.position = {
+			'x': 0, 'y': 0, 'z': 0
+		}
 	}
 	display(){
 		this.scene.pushMatrix();

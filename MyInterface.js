@@ -50,7 +50,7 @@ class MyInterface extends CGFinterface {
           
     };
     
-    processKeyDown(event){
+    processKeyUp(event){
         this.activeKeys[event.code] = false;
 
     };
