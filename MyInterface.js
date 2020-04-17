@@ -29,8 +29,34 @@ class MyInterface extends CGFinterface {
 
         this.gui.add(this.scene, 'selectedTexture', this.scene.textureIds).name('Map Texture').onChange(this.scene.updateTexture.bind(this.scene));
 
-        
+        this.initKeys();
 
         return true;
     }
+
+    initKeys(){
+            
+        this.scene.gui=this;
+
+        this.processKeyboard = function () {};
+
+        // create a named array to store which keys are being pressed
+        this.activeKeys = {};
+
+    }
+
+    processKeyDown(event) {
+        this.activeKeys[event.code] = true;
+          
+    };
+    
+    processKeyDown(event){
+        this.activeKeys[event.code] = false;
+
+    };
+
+    isKeyPressed(keyCode){
+        return this.activeKeys[keyCode] || false;
+    }
+
 }

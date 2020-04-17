@@ -48,7 +48,6 @@ class MyScene extends CGFscene {
         this.displayVehicle = true;
 
         this.selectedTexture = 0;
-        console.log(this.selectedTexture);
         this.textureIds = { 'Default': 0, 'Volcano': 1 };
     }
     initLights() {
@@ -68,7 +67,7 @@ class MyScene extends CGFscene {
     }
     // called periodically (as per setUpdatePeriod() in init())
     update(t){
-        //To be done...
+        this.checkKeys();
     }
 
     updateTexture() {
@@ -116,5 +115,34 @@ class MyScene extends CGFscene {
 
 
         // ---- END Primitive drawing section
+    }
+
+    checkKeys(){
+        var text = "Keys pressed: ";
+        var keysPressed = false;
+
+
+        if(this.gui.isKeyPressed("KeyW")) {
+            text+= " W ";
+            keysPressed=true;
+        }
+
+        if(this.gui.isKeyPressed("KeyA")) {
+            text+=" A ";
+            keysPressed = true;
+        }
+
+        if(this.gui.isKeyPressed("KeyS")) {
+            text+=" S ";
+            keysPressed = true;
+        }
+
+        if(this.gui.isKeyPressed("KeyD")) {
+            text+=" D ";
+            keysPressed = true;
+        }
+
+        if(keysPressed)
+            console.log(text);
     }
 }
