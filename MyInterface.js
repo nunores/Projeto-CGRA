@@ -52,7 +52,7 @@ class MyInterface extends CGFinterface {
     
     processKeyUp(event){
         this.activeKeys[event.code] = false;
-
+        
     };
 
     isKeyPressed(keyCode){

@@ -127,15 +127,16 @@ class MyScene extends CGFscene {
             keysPressed=true;
 
             if (this.vehicle.velocity == 0) {
-                this.vehicle.velocity = 0.0003;
+                this.vehicle.velocity = 0.01;
             }
 
-            this.vehicle.accelerate(this.vehicle.velocity);
+            this.vehicle.accelerate(0.01);
         }
-        if(this.gui.isKeyPressed("KeyA")) {
+        if(this.gui.isKeyPressed("KeyA")) {    
             text+=" A ";
             keysPressed = true;
 
+            this.vehicle.velocity = 0;
             this.vehicle.turn(5);
         }
 
@@ -150,6 +151,7 @@ class MyScene extends CGFscene {
             text+=" D ";
             keysPressed = true;
 
+            this.vehicle.velocity = 0;
             this.vehicle.turn(-5);
 
         }
