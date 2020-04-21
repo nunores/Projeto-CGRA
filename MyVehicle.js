@@ -40,7 +40,6 @@ class MyVehicle extends CGFobject {
 	}
 	accelerate(val){
 		this.velocity += val;
-		console.log("Velocity: ", this.velocity);
 	}
 	reset() {
 		this.velocity = 0;
