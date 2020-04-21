@@ -49,6 +49,10 @@ class MyScene extends CGFscene {
 
         this.selectedTexture = 0;
         this.textureIds = { 'Default': 0, 'Volcano': 1 };
+
+        this.speedFactor = 1;
+        this.scaleFactor = 1;
+
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -130,7 +134,7 @@ class MyScene extends CGFscene {
                 this.vehicle.velocity = 0.01;
             }
 
-            this.vehicle.accelerate(0.01);
+            this.vehicle.accelerate(this.speedFactor * 0.01);
         }
         if(this.gui.isKeyPressed("KeyA")) {    
             text+=" A ";
@@ -144,7 +148,7 @@ class MyScene extends CGFscene {
             text+=" S ";
             keysPressed = true;
 
-            this.vehicle.accelerate(-this.vehicle.velocity);
+            this.vehicle.accelerate(-this.speedFactor * 0.01);
         }
 
         if(this.gui.isKeyPressed("KeyD")) {

@@ -29,6 +29,10 @@ class MyInterface extends CGFinterface {
 
         this.gui.add(this.scene, 'selectedTexture', this.scene.textureIds).name('Map Texture').onChange(this.scene.updateTexture.bind(this.scene));
 
+        this.gui.add(this.scene, "speedFactor", 0.1, 3).name("Speed Factor");
+        this.gui.add(this.scene, "scaleFactor", 0.5, 3).name("Scale Factor");
+
+
         this.initKeys();
 
         return true;
