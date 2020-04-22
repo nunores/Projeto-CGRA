@@ -17,23 +17,10 @@ class MyVehicle extends CGFobject {
 		this.initBuffers();
 	}
 	initBuffers() {
-		this.vertices = [
-			0, 0, Math.sqrt(2)/4,	//0
-			Math.sqrt(2)/2, 0, -Math.sqrt(2)/4,	//1
-			-Math.sqrt(2)/2, 0, -Math.sqrt(2)/4,	//2
-		];
+		var scene = this.scene;
 
-		//Counter-clockwise reference of vertices
-		this.indices = [
-            0, 1, 2,
-            2, 1, 0
-		];
-
-		//The defined indices (and corresponding vertices)
-		//will be read in groups of three to draw triangles
-		this.primitiveType = this.scene.gl.TRIANGLES;
-
-		this.initGLBuffers();
+		this.sphere = new MySphere(scene, 40, 40);
+		this.cylinder = new MyCylinder(scene, 250);
 	}
 	turn(val){
 		this.orientationAngle += val;
@@ -54,8 +41,30 @@ class MyVehicle extends CGFobject {
 		this.scene.translate(this.position.x, this.position.y, this.position.z);
 		this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0) // Ângulo referente ao eixo dos YY
 
-		this.scene.scale(this.scene.scaleFactor, this.scene.scaleFactor, this.scene.scaleFactor);
-        super.display();
+		// Construção do dirgível
+
+		// Sphere
+
+		this.scene.scale(this.scene.scaleFactor, this.scene.scaleFactor, this.scene.scaleFactor * 2);
+				
+		this.sphere.display();
+
+		// Cylinder (cockpit)
+
+		this.scene.scale(this.scene.scaleFactor, this.scene.scaleFactor, this.scene.scaleFactor / 2);
+
+		this.scene.scale(this.scene.scaleFactor / 4, this.scene.scaleFactor / 4, this.scene.scaleFactor)
+
+		this.scene.translate(0, -5, 0);
+		//this.scene.translate(0, 0)
+		this.scene.rotate(Math.PI/2, 1, 0, 0);
+
+		this.scene.scale(this.scene.scaleFactor, this.scene.scaleFactor * 2, this.scene.scaleFactor);
+		
+		this.cylinder.display();
+
+		// --------------------------------
+
         this.scene.popMatrix();
 	}
 	update(){
