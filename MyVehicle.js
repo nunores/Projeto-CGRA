@@ -54,6 +54,7 @@ class MyVehicle extends CGFobject {
 		this.scene.translate(this.position.x, this.position.y, this.position.z);
 		this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0) // Ângulo referente ao eixo dos YY
 
+		this.scene.scale(this.scene.scaleFactor, this.scene.scaleFactor, this.scene.scaleFactor);
         super.display();
         this.scene.popMatrix();
 	}
