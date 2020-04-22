@@ -21,6 +21,10 @@ class MyVehicle extends CGFobject {
 
 		this.sphere = new MySphere(scene, 40, 40);
 		this.cylinder = new MyCylinder(scene, 250);
+		this.complementarySphere = new MySphere(scene, 40, 40);
+		this.motorSphere = new MySphere(scene, 40, 40); 
+
+		this.propeller = new MyPropeller(scene);
 	}
 	turn(val){
 		this.orientationAngle += val;
@@ -45,27 +49,161 @@ class MyVehicle extends CGFobject {
 
 		// Sphere
 
-		this.scene.scale(this.scene.scaleFactor, this.scene.scaleFactor, this.scene.scaleFactor * 2);
+		//this.scene.translate(0, 10, 0); ///////////////////////////////////////////////
+
+		this.scene.scale(this.scene.scaleFactor/2, this.scene.scaleFactor/2, this.scene.scaleFactor);
 				
 		this.sphere.display();
 
+		this.scene.popMatrix();
+
 		// Cylinder (cockpit)
 
-		this.scene.scale(this.scene.scaleFactor, this.scene.scaleFactor, this.scene.scaleFactor / 2);
+		this.scene.pushMatrix();
 
-		this.scene.scale(this.scene.scaleFactor / 4, this.scene.scaleFactor / 4, this.scene.scaleFactor)
+		this.scene.translate(this.position.x, this.position.y, this.position.z);
+		this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0);
 
-		this.scene.translate(0, -5, 0);
-		//this.scene.translate(0, 0)
+		this.scene.scale(this.scene.scaleFactor /8, this.scene.scaleFactor / 8, this.scene.scaleFactor /1.5);
+
+		this.scene.translate(0, 0, -0.5);
+
+		this.scene.translate(0, -4, 0);
+
 		this.scene.rotate(Math.PI/2, 1, 0, 0);
-
-		this.scene.scale(this.scene.scaleFactor, this.scene.scaleFactor * 2, this.scene.scaleFactor);
 		
 		this.cylinder.display();
 
-		// --------------------------------
+		this.scene.popMatrix();
 
-        this.scene.popMatrix();
+		// Complementary Spheres
+
+		this.scene.pushMatrix();
+
+		this.scene.translate(this.position.x, this.position.y, this.position.z);
+		this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0);
+		
+		this.scene.scale(this.scene.scaleFactor /8, this.scene.scaleFactor/8, this.scene.scaleFactor/8);
+
+		this.scene.translate(0, 0, 2.5);
+		this.scene.translate(0, -4, 0);
+		
+		this.complementarySphere.display();
+
+		this.scene.popMatrix();
+		
+		this.scene.pushMatrix();
+
+		this.scene.translate(this.position.x, this.position.y, this.position.z);
+		this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0);
+		
+		this.scene.scale(this.scene.scaleFactor /8, this.scene.scaleFactor/8, this.scene.scaleFactor/8);
+
+		this.scene.translate(0, 0, -2.5);
+		this.scene.translate(0, -4, 0);
+		
+		this.complementarySphere.display();
+
+		this.scene.popMatrix();
+		
+		// Motor Spheres
+
+		this.scene.pushMatrix();
+
+		this.scene.translate(this.position.x, this.position.y, this.position.z);
+		this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0);
+		//this.scene.translate(0, 10, 0); ///////////////////////////////////////////////
+
+		this.scene.scale(this.scene.scaleFactor/18, this.scene.scaleFactor/18, this.scene.scaleFactor/9);
+
+		this.scene.translate(2,0,0);
+		this.scene.translate(0, 5, 0);
+		this.scene.translate(0,0,-3);
+		this.scene.translate(0,-15,0);
+
+		this.motorSphere.display();
+
+		this.scene.popMatrix();
+
+		this.scene.pushMatrix();
+
+		this.scene.translate(this.position.x, this.position.y, this.position.z);
+		this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0);
+		//this.scene.translate(0, 10, 0); ///////////////////////////////////////////////
+
+		this.scene.scale(this.scene.scaleFactor/18, this.scene.scaleFactor/18, this.scene.scaleFactor/9);
+
+		this.scene.translate(-2,0,0);
+		this.scene.translate(0,5,0);
+		this.scene.translate(0,0,-3);
+		this.scene.translate(0,-15,0);
+
+		this.motorSphere.display();
+
+		this.scene.popMatrix();
+
+		//Propeller (horizontais)
+		
+		this.scene.pushMatrix();
+
+		this.scene.translate(this.position.x, this.position.y, this.position.z);
+		this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0);
+		
+		this.scene.scale(this.scene.scaleFactor/2.5, this.scene.scaleFactor/2.5, this.scene.scaleFactor/2.5);
+		
+		this.scene.translate(0.5,0,-2);
+
+		this.propeller.display();
+
+		this.scene.popMatrix();
+
+		this.scene.pushMatrix();
+
+		this.scene.translate(this.position.x, this.position.y, this.position.z);
+		this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0);
+		
+		this.scene.scale(this.scene.scaleFactor/2.5, this.scene.scaleFactor/2.5, this.scene.scaleFactor/2.5);
+		
+		this.scene.translate(-0.5,0,-2);
+		
+		this.scene.rotate(Math.PI, 0,0, 1);
+
+		this.propeller.display();
+
+		this.scene.popMatrix();
+
+		//Propeller (verticais)
+
+		this.scene.pushMatrix();
+
+		this.scene.translate(this.position.x, this.position.y, this.position.z);
+		this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0);
+		
+		this.scene.scale(this.scene.scaleFactor/2.5, this.scene.scaleFactor/2.5, this.scene.scaleFactor/2.5);
+		
+		this.scene.translate(0,0.5,-2);
+		
+		this.scene.rotate(Math.PI/2, 0,0, 1);
+
+		this.propeller.display();
+
+		this.scene.popMatrix();
+
+		this.scene.pushMatrix();
+
+		this.scene.translate(this.position.x, this.position.y, this.position.z);
+		this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0);
+		
+		this.scene.scale(this.scene.scaleFactor/2.5, this.scene.scaleFactor/2.5, this.scene.scaleFactor/2.5);
+		
+		this.scene.translate(0,-0.5,-2);
+		
+		this.scene.rotate(-Math.PI/2, 0,0, 1);
+
+		this.propeller.display();
+
+		this.scene.popMatrix();
+
 	}
 	update(){
 		this.position.x += this.velocity * Math.sin(this.orientationAngle * Math.PI / 180);

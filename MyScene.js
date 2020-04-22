@@ -29,7 +29,7 @@ class MyScene extends CGFscene {
         this.cylinder = new MyCylinder(this, 4);
         this.cubemap = new MyCubeMap(this);
         this.vehicle = new MyVehicle(this);
-        
+
         // Textures and Materials
         this.incompleteSphereMaterial = new CGFappearance(this);
         this.incompleteSphereMaterial.setAmbient(0.1, 0.1, 0.1, 1);
@@ -72,6 +72,8 @@ class MyScene extends CGFscene {
     // called periodically (as per setUpdatePeriod() in init())
     update(t){
         this.checkKeys();
+        this.vehicle.update();
+        console.log(this.vehicle.velocity);
     }
 
     updateTexture() {
@@ -130,23 +132,24 @@ class MyScene extends CGFscene {
             text+= " W ";
             keysPressed=true;
 
-            if (this.vehicle.velocity == 0) {
-                this.vehicle.velocity = 0.01;
-            }
-
             this.vehicle.accelerate(this.speedFactor * 0.01);
         }
         if(this.gui.isKeyPressed("KeyA")) {    
             text+=" A ";
             keysPressed = true;
 
+            var temp = this.vehicle.velocity;
+
             this.vehicle.velocity = 0;
             this.vehicle.turn(5);
+
+            this.vehicle.velocity = temp;
         }
 
         if(this.gui.isKeyPressed("KeyS")) {
             text+=" S ";
             keysPressed = true;
+
 
             this.vehicle.accelerate(-this.speedFactor * 0.01);
         }
@@ -155,8 +158,12 @@ class MyScene extends CGFscene {
             text+=" D ";
             keysPressed = true;
 
+            var temp = this.vehicle.velocity;
+
             this.vehicle.velocity = 0;
             this.vehicle.turn(-5);
+
+            this.vehicle.velocity = temp;
 
         }
 
