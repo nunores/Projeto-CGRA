@@ -73,7 +73,6 @@ class MyScene extends CGFscene {
     update(t){
         this.checkKeys();
         this.vehicle.update();
-        console.log(this.vehicle.velocity);
     }
 
     updateTexture() {

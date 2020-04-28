@@ -23,8 +23,36 @@ class MyVehicle extends CGFobject {
 		this.cylinder = new MyCylinder(scene, 250);
 		this.complementarySphere = new MySphere(scene, 40, 40);
 		this.motorSphere = new MySphere(scene, 40, 40); 
-
 		this.propeller = new MyPropeller(scene);
+		this.blade = new MyBlade(scene);
+
+		this.initMaterials();
+	}
+	initMaterials(){
+		this.ballonMaterial = new CGFappearance(this.scene);
+		this.ballonMaterial.setAmbient(0.1, 0.1, 0.1, 1);
+		this.ballonMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
+		this.ballonMaterial.setSpecular(0.1, 0.1, 0.1, 1);
+		this.ballonMaterial.setShininess(10.0);
+		this.ballonMaterial.loadTexture('images/zeppelin/ballon_texture.jpg');
+		this.ballonMaterial.setTextureWrap('REPEAT', 'REPEAT');
+
+		this.propellerMaterial = new CGFappearance(this.scene);
+		this.propellerMaterial.setAmbient(0.1, 0.1, 0.1, 1);
+		this.propellerMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
+		this.propellerMaterial.setSpecular(0.1, 0.1, 0.1, 1);
+		this.propellerMaterial.setShininess(10.0);
+		this.propellerMaterial.loadTexture('images/zeppelin/red_texture.jpg');
+		this.propellerMaterial.setTextureWrap('REPEAT', 'REPEAT');
+
+		
+		this.cockpitMaterial = new CGFappearance(this.scene);
+		this.cockpitMaterial.setAmbient(225/255, 198/255, 153/255, 1);
+		this.cockpitMaterial.setDiffuse(225/1.4/255, 198/1.4/255, 153/1.4/255, 1);
+		this.cockpitMaterial.setSpecular(225/1.4/255, 198/1.4/255, 153/1.4/255, 1);
+		this.cockpitMaterial.setShininess(6.0);
+
+
 	}
 	turn(val){
 		this.orientationAngle += val;
@@ -49,10 +77,11 @@ class MyVehicle extends CGFobject {
 
 		// Sphere
 
-		//this.scene.translate(0, 10, 0); ///////////////////////////////////////////////
+		this.scene.translate(0, 10, 0);
 
 		this.scene.scale(this.scene.scaleFactor/2, this.scene.scaleFactor/2, this.scene.scaleFactor);
 				
+		this.ballonMaterial.apply();
 		this.sphere.display();
 
 		this.scene.popMatrix();
@@ -63,15 +92,20 @@ class MyVehicle extends CGFobject {
 
 		this.scene.translate(this.position.x, this.position.y, this.position.z);
 		this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0);
+		
+		this.scene.translate(0, 10, 0);
 
 		this.scene.scale(this.scene.scaleFactor /8, this.scene.scaleFactor / 8, this.scene.scaleFactor /1.5);
 
 		this.scene.translate(0, 0, -0.5);
 
 		this.scene.translate(0, -4, 0);
+		
+		this.scene.rotate(Math.PI/2, 0, 0, 1);
 
 		this.scene.rotate(Math.PI/2, 1, 0, 0);
 		
+		this.cockpitMaterial.apply();
 		this.cylinder.display();
 
 		this.scene.popMatrix();
@@ -82,6 +116,8 @@ class MyVehicle extends CGFobject {
 
 		this.scene.translate(this.position.x, this.position.y, this.position.z);
 		this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0);
+
+		this.scene.translate(0, 10, 0);
 		
 		this.scene.scale(this.scene.scaleFactor /8, this.scene.scaleFactor/8, this.scene.scaleFactor/8);
 
@@ -96,6 +132,8 @@ class MyVehicle extends CGFobject {
 
 		this.scene.translate(this.position.x, this.position.y, this.position.z);
 		this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0);
+
+		this.scene.translate(0, 10, 0);
 		
 		this.scene.scale(this.scene.scaleFactor /8, this.scene.scaleFactor/8, this.scene.scaleFactor/8);
 
@@ -112,7 +150,7 @@ class MyVehicle extends CGFobject {
 
 		this.scene.translate(this.position.x, this.position.y, this.position.z);
 		this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0);
-		//this.scene.translate(0, 10, 0); ///////////////////////////////////////////////
+		this.scene.translate(0, 10, 0);
 
 		this.scene.scale(this.scene.scaleFactor/18, this.scene.scaleFactor/18, this.scene.scaleFactor/9);
 
@@ -121,6 +159,7 @@ class MyVehicle extends CGFobject {
 		this.scene.translate(0,0,-3);
 		this.scene.translate(0,-15,0);
 
+		this.ballonMaterial.apply();
 		this.motorSphere.display();
 
 		this.scene.popMatrix();
@@ -129,7 +168,7 @@ class MyVehicle extends CGFobject {
 
 		this.scene.translate(this.position.x, this.position.y, this.position.z);
 		this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0);
-		//this.scene.translate(0, 10, 0); ///////////////////////////////////////////////
+		this.scene.translate(0, 10, 0);
 
 		this.scene.scale(this.scene.scaleFactor/18, this.scene.scaleFactor/18, this.scene.scaleFactor/9);
 
@@ -138,6 +177,7 @@ class MyVehicle extends CGFobject {
 		this.scene.translate(0,0,-3);
 		this.scene.translate(0,-15,0);
 
+		this.ballonMaterial.apply();
 		this.motorSphere.display();
 
 		this.scene.popMatrix();
@@ -148,11 +188,14 @@ class MyVehicle extends CGFobject {
 
 		this.scene.translate(this.position.x, this.position.y, this.position.z);
 		this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0);
+
+		this.scene.translate(0, 10, 0);
 		
 		this.scene.scale(this.scene.scaleFactor/2.5, this.scene.scaleFactor/2.5, this.scene.scaleFactor/2.5);
 		
 		this.scene.translate(0.5,0,-2);
 
+		this.propellerMaterial.apply();
 		this.propeller.display();
 
 		this.scene.popMatrix();
@@ -161,6 +204,8 @@ class MyVehicle extends CGFobject {
 
 		this.scene.translate(this.position.x, this.position.y, this.position.z);
 		this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0);
+
+		this.scene.translate(0, 10, 0);
 		
 		this.scene.scale(this.scene.scaleFactor/2.5, this.scene.scaleFactor/2.5, this.scene.scaleFactor/2.5);
 		
@@ -178,6 +223,8 @@ class MyVehicle extends CGFobject {
 
 		this.scene.translate(this.position.x, this.position.y, this.position.z);
 		this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0);
+
+		this.scene.translate(0, 10, 0);
 		
 		this.scene.scale(this.scene.scaleFactor/2.5, this.scene.scaleFactor/2.5, this.scene.scaleFactor/2.5);
 		
@@ -193,6 +240,8 @@ class MyVehicle extends CGFobject {
 
 		this.scene.translate(this.position.x, this.position.y, this.position.z);
 		this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0);
+
+		this.scene.translate(0, 10, 0);
 		
 		this.scene.scale(this.scene.scaleFactor/2.5, this.scene.scaleFactor/2.5, this.scene.scaleFactor/2.5);
 		
@@ -201,6 +250,46 @@ class MyVehicle extends CGFobject {
 		this.scene.rotate(-Math.PI/2, 0,0, 1);
 
 		this.propeller.display();
+
+		this.scene.popMatrix();
+
+		// Motor Propeller
+
+		this.scene.pushMatrix();
+
+		this.scene.translate(this.position.x, this.position.y, this.position.z);
+		this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0);
+
+		this.scene.translate(0, 10, 0);
+
+		this.scene.scale(this.scene.scaleFactor/30, this.scene.scaleFactor/30, this.scene.scaleFactor/30);
+				
+		this.scene.translate(1.5,0,0);
+		this.scene.translate(0, 8, 0);
+		this.scene.translate(0,0,-13.5);
+		this.scene.translate(0,-25,0);
+		
+		this.blade.display();
+		
+
+		this.scene.popMatrix();
+
+		this.scene.pushMatrix();
+
+		this.scene.translate(this.position.x, this.position.y, this.position.z);
+		this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0);
+
+		this.scene.translate(0, 10, 0);
+
+		this.scene.scale(this.scene.scaleFactor/30, this.scene.scaleFactor/30, this.scene.scaleFactor/30);
+				
+		this.scene.translate(-5.5,0,0);
+		this.scene.translate(0, 8, 0);
+		this.scene.translate(0,0,-13.5);
+		this.scene.translate(0,-25,0);
+		
+		this.blade.display();
+		
 
 		this.scene.popMatrix();
 

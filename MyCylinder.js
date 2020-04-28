@@ -12,7 +12,7 @@ class MyCylinder extends CGFobject {
         this.vertices = [];
         this.indices = [];
         this.normals = [];
-        this.texCoords = [];
+        this.texCoords = []; 
 
         var ang = 0;
         var alphaAng = 2*Math.PI/this.slices;
@@ -66,8 +66,8 @@ class MyCylinder extends CGFobject {
 
         var temp = (i + 1) / this.slices;
 
-        this.texCoords.push(temp, 1,
-                            temp, 0);   
+        //this.texCoords.push(temp, 1,
+          //                temp, 0);   
 
 
         this.primitiveType = this.scene.gl.TRIANGLES;
