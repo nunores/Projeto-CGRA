@@ -18,6 +18,7 @@ class MyVehicle extends CGFobject {
 	}
 	initBuffers() {
 		var scene = this.scene;
+		this.autoPilot;
 
 		this.sphere = new MySphere(scene, 40, 40);
 		this.cylinder = new MyCylinder(scene, 250);
@@ -70,14 +71,21 @@ class MyVehicle extends CGFobject {
 	display(){
 		this.scene.pushMatrix();
 
-		this.scene.translate(this.position.x, this.position.y, this.position.z);
-		this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0) // Ângulo referente ao eixo dos YY
+		if (this.autoPilot)
+		{
+			this.scene.rotate(Math.PI/2,0,1,0);
+		}
+		else
+		{
+			this.scene.translate(this.position.x, this.position.y, this.position.z);
+			this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0) // Ângulo referente ao eixo dos YY
+		}
 
-		// Construção do dirgível
+		// Construção do dirgívelthis
 
 		// Sphere
 
-		this.scene.translate(0, 10, 0);
+		//this.scene.translate(0, 10, 0);
 
 		this.scene.scale(this.scene.scaleFactor/2, this.scene.scaleFactor/2, this.scene.scaleFactor);
 				
@@ -90,10 +98,17 @@ class MyVehicle extends CGFobject {
 
 		this.scene.pushMatrix();
 
-		this.scene.translate(this.position.x, this.position.y, this.position.z);
-		this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0);
+		if (this.autoPilot)
+		{
+			this.scene.rotate(Math.PI/2,0,1,0);
+		}
+		else
+		{
+			this.scene.translate(this.position.x, this.position.y, this.position.z);
+			this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0) // Ângulo referente ao eixo dos YY
+		}
 		
-		this.scene.translate(0, 10, 0);
+		//this.scene.translate(0, 10, 0);
 
 		this.scene.scale(this.scene.scaleFactor /8, this.scene.scaleFactor / 8, this.scene.scaleFactor /1.5);
 
@@ -114,10 +129,17 @@ class MyVehicle extends CGFobject {
 
 		this.scene.pushMatrix();
 
-		this.scene.translate(this.position.x, this.position.y, this.position.z);
-		this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0);
+		if (this.autoPilot)
+		{
+			this.scene.rotate(Math.PI/2,0,1,0);
+		}
+		else
+		{
+			this.scene.translate(this.position.x, this.position.y, this.position.z);
+			this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0) // Ângulo referente ao eixo dos YY
+		}
 
-		this.scene.translate(0, 10, 0);
+		//this.scene.translate(0, 10, 0);
 		
 		this.scene.scale(this.scene.scaleFactor /8, this.scene.scaleFactor/8, this.scene.scaleFactor/8);
 
@@ -130,10 +152,17 @@ class MyVehicle extends CGFobject {
 		
 		this.scene.pushMatrix();
 
-		this.scene.translate(this.position.x, this.position.y, this.position.z);
-		this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0);
+		if (this.autoPilot)
+		{
+			this.scene.rotate(Math.PI/2,0,1,0);
+		}
+		else
+		{
+			this.scene.translate(this.position.x, this.position.y, this.position.z);
+			this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0) // Ângulo referente ao eixo dos YY
+		}
 
-		this.scene.translate(0, 10, 0);
+		//this.scene.translate(0, 10, 0);
 		
 		this.scene.scale(this.scene.scaleFactor /8, this.scene.scaleFactor/8, this.scene.scaleFactor/8);
 
@@ -148,9 +177,16 @@ class MyVehicle extends CGFobject {
 
 		this.scene.pushMatrix();
 
-		this.scene.translate(this.position.x, this.position.y, this.position.z);
-		this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0);
-		this.scene.translate(0, 10, 0);
+		if (this.autoPilot)
+		{
+			this.scene.rotate(Math.PI/2,0,1,0);
+		}
+		else
+		{
+			this.scene.translate(this.position.x, this.position.y, this.position.z);
+			this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0) // Ângulo referente ao eixo dos YY
+		}
+		//this.scene.translate(0, 10, 0);
 
 		this.scene.scale(this.scene.scaleFactor/18, this.scene.scaleFactor/18, this.scene.scaleFactor/9);
 
@@ -166,9 +202,17 @@ class MyVehicle extends CGFobject {
 
 		this.scene.pushMatrix();
 
-		this.scene.translate(this.position.x, this.position.y, this.position.z);
-		this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0);
-		this.scene.translate(0, 10, 0);
+		if (this.autoPilot)
+		{
+			this.scene.rotate(Math.PI/2,0,1,0);
+		}
+		else
+		{
+			this.scene.translate(this.position.x, this.position.y, this.position.z);
+			this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0) // Ângulo referente ao eixo dos YY
+		}
+		
+		//this.scene.translate(0, 10, 0);
 
 		this.scene.scale(this.scene.scaleFactor/18, this.scene.scaleFactor/18, this.scene.scaleFactor/9);
 
@@ -186,10 +230,17 @@ class MyVehicle extends CGFobject {
 		
 		this.scene.pushMatrix();
 
-		this.scene.translate(this.position.x, this.position.y, this.position.z);
-		this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0);
+		if (this.autoPilot)
+		{
+			this.scene.rotate(Math.PI/2,0,1,0);
+		}
+		else
+		{
+			this.scene.translate(this.position.x, this.position.y, this.position.z);
+			this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0) // Ângulo referente ao eixo dos YY
+		}
 
-		this.scene.translate(0, 10, 0);
+		//this.scene.translate(0, 10, 0);
 		
 		this.scene.scale(this.scene.scaleFactor/2.5, this.scene.scaleFactor/2.5, this.scene.scaleFactor/2.5);
 		
@@ -202,10 +253,17 @@ class MyVehicle extends CGFobject {
 
 		this.scene.pushMatrix();
 
-		this.scene.translate(this.position.x, this.position.y, this.position.z);
-		this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0);
+		if (this.autoPilot)
+		{
+			this.scene.rotate(Math.PI/2,0,1,0);
+		}
+		else
+		{
+			this.scene.translate(this.position.x, this.position.y, this.position.z);
+			this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0) // Ângulo referente ao eixo dos YY
+		}
 
-		this.scene.translate(0, 10, 0);
+		//this.scene.translate(0, 10, 0);
 		
 		this.scene.scale(this.scene.scaleFactor/2.5, this.scene.scaleFactor/2.5, this.scene.scaleFactor/2.5);
 		
@@ -221,10 +279,25 @@ class MyVehicle extends CGFobject {
 
 		this.scene.pushMatrix();
 
-		this.scene.translate(this.position.x, this.position.y, this.position.z);
-		this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0);
+		if (this.autoPilot)
+		{
+			this.scene.rotate(Math.PI/2,0,1,0);
+		}
+		else
+		{
+			this.scene.translate(this.position.x, this.position.y, this.position.z);
+			this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0) // Ângulo referente ao eixo dos YY
+		}
 
-		this.scene.translate(0, 10, 0);
+		if(this.scene.isMovingLeft) {
+			this.scene.rotate(-Math.PI/16, 0, 1, 0,);
+		}
+
+		if(this.scene.isMovingRight) {
+			this.scene.rotate(Math.PI/16, 0, 1, 0,);
+		}
+
+		//this.scene.translate(0, 10, 0);
 		
 		this.scene.scale(this.scene.scaleFactor/2.5, this.scene.scaleFactor/2.5, this.scene.scaleFactor/2.5);
 		
@@ -238,10 +311,25 @@ class MyVehicle extends CGFobject {
 
 		this.scene.pushMatrix();
 
-		this.scene.translate(this.position.x, this.position.y, this.position.z);
-		this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0);
+		if (this.autoPilot)
+		{
+			this.scene.rotate(Math.PI/2,0,1,0);
+		}
+		else
+		{
+			this.scene.translate(this.position.x, this.position.y, this.position.z);
+			this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0) // Ângulo referente ao eixo dos YY
+		}
 
-		this.scene.translate(0, 10, 0);
+		if(this.scene.isMovingLeft) {
+			this.scene.rotate(-Math.PI/16, 0, 1, 0,);
+		}
+
+		if(this.scene.isMovingRight) {
+			this.scene.rotate(Math.PI/16, 0, 1, 0,);
+		}
+
+		//this.scene.translate(0, 10, 0);
 		
 		this.scene.scale(this.scene.scaleFactor/2.5, this.scene.scaleFactor/2.5, this.scene.scaleFactor/2.5);
 		
@@ -257,10 +345,19 @@ class MyVehicle extends CGFobject {
 
 		this.scene.pushMatrix();
 
-		this.scene.translate(this.position.x, this.position.y, this.position.z);
-		this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0);
+		if (this.autoPilot)
+		{
+			this.scene.rotate(Math.PI/2,0,1,0);
+		}
+		else
+		{
+			this.scene.translate(this.position.x, this.position.y, this.position.z);
+			this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0) // Ângulo referente ao eixo dos YY
+		}
 
-		this.scene.translate(0, 10, 0);
+		//this.scene.rotate(this.scene.motorAngle, 0, 0, 1) // Rotação do motor
+
+		//this.scene.translate(0, 10, 0);
 
 		this.scene.scale(this.scene.scaleFactor/30, this.scene.scaleFactor/30, this.scene.scaleFactor/30);
 				
@@ -268,25 +365,42 @@ class MyVehicle extends CGFobject {
 		this.scene.translate(0, 8, 0);
 		this.scene.translate(0,0,-13.5);
 		this.scene.translate(0,-25,0);
+
+		
+		this.scene.translate(2,0.5,0);
+		this.scene.rotate(this.scene.motorAngle, 0, 0, 1) // Rotação do motor
+		this.scene.translate(-2,-0.5,0);
 		
 		this.blade.display();
 		
-
 		this.scene.popMatrix();
 
 		this.scene.pushMatrix();
 
-		this.scene.translate(this.position.x, this.position.y, this.position.z);
-		this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0);
+		if (this.autoPilot)
+		{
+			this.scene.rotate(Math.PI/2,0,1,0);
+		}
+		else
+		{
+			this.scene.translate(this.position.x, this.position.y, this.position.z);
+			this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0) // Ângulo referente ao eixo dos YY
+		}
 
-		this.scene.translate(0, 10, 0);
+		//this.scene.translate(0, 10, 0);
+
+		this.scene.scale(this.scene.scaleFactor, this.scene.scaleFactor, this.scene.scaleFactor);
 
 		this.scene.scale(this.scene.scaleFactor/30, this.scene.scaleFactor/30, this.scene.scaleFactor/30);
-				
+	
 		this.scene.translate(-5.5,0,0);
 		this.scene.translate(0, 8, 0);
 		this.scene.translate(0,0,-13.5);
 		this.scene.translate(0,-25,0);
+
+		this.scene.translate(2,0.5,0);
+		this.scene.rotate(this.scene.motorAngle, 0, 0, 1) // Rotação do motor
+		this.scene.translate(-2,-0.5,0);
 		
 		this.blade.display();
 		
@@ -295,6 +409,7 @@ class MyVehicle extends CGFobject {
 
 	}
 	update(){
+		this.scene.motorAngle += this.velocity * 6;
 		this.position.x += this.velocity * Math.sin(this.orientationAngle * Math.PI / 180);
 		this.position.z += this.velocity * Math.cos(this.orientationAngle * Math.PI / 180);
 	}

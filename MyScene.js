@@ -53,6 +53,11 @@ class MyScene extends CGFscene {
         this.speedFactor = 1;
         this.scaleFactor = 1;
 
+        this.isMovingLeft = false;
+        this.isMovingRight = false;
+
+        this.motorAngle = 0;
+
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -73,6 +78,8 @@ class MyScene extends CGFscene {
     update(t){
         this.checkKeys();
         this.vehicle.update();
+
+        console.log("AUTOPILOT: ", this.vehicle.autoPilot);
     }
 
     updateTexture() {
@@ -126,16 +133,21 @@ class MyScene extends CGFscene {
         var text = "Keys pressed: ";
         var keysPressed = false;
 
+        this.isMovingLeft = false;
+        this.isMovingRight = false;
 
-        if(this.gui.isKeyPressed("KeyW")) {
+
+        if(this.gui.isKeyPressed("KeyW") && !this.vehicle.autoPilot) {
             text+= " W ";
             keysPressed=true;
 
             this.vehicle.accelerate(this.speedFactor * 0.01);
         }
-        if(this.gui.isKeyPressed("KeyA")) {    
+        if(this.gui.isKeyPressed("KeyA") && !this.vehicle.autoPilot) {    
             text+=" A ";
             keysPressed = true;
+            this.isMovingLeft = true;
+            this.isMovingRight = false;
 
             var temp = this.vehicle.velocity;
 
@@ -145,17 +157,19 @@ class MyScene extends CGFscene {
             this.vehicle.velocity = temp;
         }
 
-        if(this.gui.isKeyPressed("KeyS")) {
+        if(this.gui.isKeyPressed("KeyS") && !this.vehicle.autoPilot) {
             text+=" S ";
             keysPressed = true;
-
 
             this.vehicle.accelerate(-this.speedFactor * 0.01);
         }
 
-        if(this.gui.isKeyPressed("KeyD")) {
+        if(this.gui.isKeyPressed("KeyD") && !this.vehicle.autoPilot) {
+            
             text+=" D ";
             keysPressed = true;
+            this.isMovingLeft = false;
+            this.isMovingRight = true;
 
             var temp = this.vehicle.velocity;
 
@@ -169,8 +183,18 @@ class MyScene extends CGFscene {
         if(this.gui.isKeyPressed("KeyR")) {
             text+=" R ";
             keysPressed = true;
+
+            this.vehicle.autoPilot = false;
             
             this.vehicle.reset();
+        }
+
+        if(this.gui.isKeyPressed("KeyP")) {
+            text+=" P ";
+            keysPressed = true;
+
+            this.vehicle.autoPilot = true;
+
         }
 
         if(keysPressed) {
