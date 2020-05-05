@@ -18,7 +18,7 @@ class MyVehicle extends CGFobject {
 	}
 	initBuffers() {
 		var scene = this.scene;
-		this.autoPilot;
+		this.autoPilot = false;
 
 		this.sphere = new MySphere(scene, 40, 40);
 		this.cylinder = new MyCylinder(scene, 250);
@@ -26,6 +26,19 @@ class MyVehicle extends CGFobject {
 		this.motorSphere = new MySphere(scene, 40, 40); 
 		this.propeller = new MyPropeller(scene);
 		this.blade = new MyBlade(scene);
+
+		this.perpendicular = 0;
+		this.direction_vector_x = 0;
+		this.direction_vector_z = 0;
+
+		this.center_x = 0;
+		this.center_z = 0;
+
+		this.pilotAngle = 0;
+		this.angularSpeed = 360 / 5;
+		
+		this.time = 0;
+		this.deltaTime = 0;
 
 		this.initMaterials();
 	}
@@ -73,7 +86,8 @@ class MyVehicle extends CGFobject {
 
 		if (this.autoPilot)
 		{
-			this.scene.rotate(Math.PI/2,0,1,0);
+			this.scene.translate(this.position.x, this.position.y, this.position.z);
+			this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0) // Ângulo referente ao eixo dos YY
 		}
 		else
 		{
@@ -100,7 +114,8 @@ class MyVehicle extends CGFobject {
 
 		if (this.autoPilot)
 		{
-			this.scene.rotate(Math.PI/2,0,1,0);
+			this.scene.translate(this.position.x, this.position.y, this.position.z);
+			this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0) // Ângulo referente ao eixo dos YY
 		}
 		else
 		{
@@ -131,7 +146,8 @@ class MyVehicle extends CGFobject {
 
 		if (this.autoPilot)
 		{
-			this.scene.rotate(Math.PI/2,0,1,0);
+			this.scene.translate(this.position.x, this.position.y, this.position.z);
+			this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0) // Ângulo referente ao eixo dos YY
 		}
 		else
 		{
@@ -154,7 +170,8 @@ class MyVehicle extends CGFobject {
 
 		if (this.autoPilot)
 		{
-			this.scene.rotate(Math.PI/2,0,1,0);
+			this.scene.translate(this.position.x, this.position.y, this.position.z);
+			this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0) // Ângulo referente ao eixo dos YY
 		}
 		else
 		{
@@ -179,7 +196,8 @@ class MyVehicle extends CGFobject {
 
 		if (this.autoPilot)
 		{
-			this.scene.rotate(Math.PI/2,0,1,0);
+			this.scene.translate(this.position.x, this.position.y, this.position.z);
+			this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0) // Ângulo referente ao eixo dos YY
 		}
 		else
 		{
@@ -204,7 +222,8 @@ class MyVehicle extends CGFobject {
 
 		if (this.autoPilot)
 		{
-			this.scene.rotate(Math.PI/2,0,1,0);
+			this.scene.translate(this.position.x, this.position.y, this.position.z);
+			this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0) // Ângulo referente ao eixo dos YY
 		}
 		else
 		{
@@ -232,7 +251,8 @@ class MyVehicle extends CGFobject {
 
 		if (this.autoPilot)
 		{
-			this.scene.rotate(Math.PI/2,0,1,0);
+			this.scene.translate(this.position.x, this.position.y, this.position.z);
+			this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0) // Ângulo referente ao eixo dos YY
 		}
 		else
 		{
@@ -255,7 +275,8 @@ class MyVehicle extends CGFobject {
 
 		if (this.autoPilot)
 		{
-			this.scene.rotate(Math.PI/2,0,1,0);
+			this.scene.translate(this.position.x, this.position.y, this.position.z);
+			this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0) // Ângulo referente ao eixo dos YY
 		}
 		else
 		{
@@ -281,7 +302,8 @@ class MyVehicle extends CGFobject {
 
 		if (this.autoPilot)
 		{
-			this.scene.rotate(Math.PI/2,0,1,0);
+			this.scene.translate(this.position.x, this.position.y, this.position.z);
+			this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0) // Ângulo referente ao eixo dos YY
 		}
 		else
 		{
@@ -313,7 +335,8 @@ class MyVehicle extends CGFobject {
 
 		if (this.autoPilot)
 		{
-			this.scene.rotate(Math.PI/2,0,1,0);
+			this.scene.translate(this.position.x, this.position.y, this.position.z);
+			this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0) // Ângulo referente ao eixo dos YY
 		}
 		else
 		{
@@ -347,7 +370,8 @@ class MyVehicle extends CGFobject {
 
 		if (this.autoPilot)
 		{
-			this.scene.rotate(Math.PI/2,0,1,0);
+			this.scene.translate(this.position.x, this.position.y, this.position.z);
+			this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0) // Ângulo referente ao eixo dos YY
 		}
 		else
 		{
@@ -379,7 +403,8 @@ class MyVehicle extends CGFobject {
 
 		if (this.autoPilot)
 		{
-			this.scene.rotate(Math.PI/2,0,1,0);
+			this.scene.translate(this.position.x, this.position.y, this.position.z);
+			this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0) // Ângulo referente ao eixo dos YY
 		}
 		else
 		{
@@ -403,15 +428,43 @@ class MyVehicle extends CGFobject {
 		this.scene.translate(-2,-0.5,0);
 		
 		this.blade.display();
-		
 
 		this.scene.popMatrix();
 
 	}
-	update(){
+	calculateCenter(){
+
+		this.perpendicular = this.orientationAngle + 90;
+
+		this.direction_vector_x = Math.sin(this.perpendicular * Math.PI / 180);
+		this.direction_vector_z = Math.cos(this.perpendicular * Math.PI / 180);
+
+		this.center_x = this.position.x + this.direction_vector_x * 5;
+		this.center_z = this.position.z + this.direction_vector_z * 5;
+	}
+	update(t){
 		this.scene.motorAngle += this.velocity * 6;
-		this.position.x += this.velocity * Math.sin(this.orientationAngle * Math.PI / 180);
-		this.position.z += this.velocity * Math.cos(this.orientationAngle * Math.PI / 180);
+
+		if(this.autoPilot){			
+			this.deltaTime = this.deltaTime / 1000;
+			this.orientationAngle += this.deltaTime * this.angularSpeed;
+			
+			// Reposition
+			
+			this.position.x = this.center_x - 5 * Math.sin(this.orientationAngle * Math.PI / 180 - 3*Math.PI/2);
+			this.position.z = this.center_z + 5 * Math.cos(this.orientationAngle * Math.PI / 180 - Math.PI/2);
+			
+			console.log("POSITION X: ", this.position.x);
+			console.log("POSITION Z: ", this.position.z);
+
+
+			this.time = t;
+		}
+		else {
+			this.position.x += this.velocity * Math.sin(this.orientationAngle * Math.PI / 180);
+			this.position.z += this.velocity * Math.cos(this.orientationAngle * Math.PI / 180);
+		}
+		
 	}
 }
 

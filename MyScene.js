@@ -76,10 +76,17 @@ class MyScene extends CGFscene {
     }
     // called periodically (as per setUpdatePeriod() in init())
     update(t){
-        this.checkKeys();
-        this.vehicle.update();
+        if(this.vehicle.time == 0){
+            this.vehicle.deltaTime = 0;
+            this.vehicle.time = t;
+        }
+        else {
+            this.vehicle.deltaTime = t - this.vehicle.time;
+            this.vehicle.time = t;
+        }
 
-        console.log("AUTOPILOT: ", this.vehicle.autoPilot);
+        this.checkKeys();
+        this.vehicle.update(t);
     }
 
     updateTexture() {
@@ -185,15 +192,17 @@ class MyScene extends CGFscene {
             keysPressed = true;
 
             this.vehicle.autoPilot = false;
+            this.vehicle.deltaTime = 0;
             
             this.vehicle.reset();
         }
 
-        if(this.gui.isKeyPressed("KeyP")) {
+        if(this.gui.isKeyPressed("KeyP") && !this.vehicle.autoPilot) {
             text+=" P ";
             keysPressed = true;
 
             this.vehicle.autoPilot = true;
+            this.vehicle.calculateCenter();
 
         }
 
