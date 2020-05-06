@@ -20,7 +20,7 @@ class MyScene extends CGFscene {
         this.gl.depthFunc(this.gl.LEQUAL);
 
         this.setUpdatePeriod(50);
-        
+
         this.enableTextures(true);
 
         //Initialize scene objects
@@ -29,6 +29,9 @@ class MyScene extends CGFscene {
         this.cylinder = new MyCylinder(this, 4);
         this.cubemap = new MyCubeMap(this);
         this.vehicle = new MyVehicle(this);
+        this.terrain = new MyTerrain(this, 20);
+        this.supply = new MySupply(this);
+        this.supplyOpened = new MySupplyOpened(this);
 
         // Textures and Materials
         this.incompleteSphereMaterial = new CGFappearance(this);
@@ -45,7 +48,10 @@ class MyScene extends CGFscene {
         this.displayIncompleteSphere = false;
         this.displayCylinder = false;
         this.displayCubeMap = false;
-        this.displayVehicle = true;
+        this.displayVehicle = false;
+        this.displayTerrain = true;
+        this.displaySupply = true;
+        this.displaySupplyOpened = false;
 
         this.selectedTexture = 0;
         this.textureIds = { 'Default': 0, 'Volcano': 1 };
@@ -66,7 +72,7 @@ class MyScene extends CGFscene {
         this.lights[0].update();
     }
     initCameras() {
-        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
+        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(30, 40, 50), vec3.fromValues(0, 0, 0));
     }
     setDefaultAppearance() {
         this.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -75,10 +81,12 @@ class MyScene extends CGFscene {
         this.setShininess(10.0);
     }
     // called periodically (as per setUpdatePeriod() in init())
-    update(t){
-        if(this.vehicle.time == 0){
+    update(t) {
+        if (this.vehicle.time == 0) {
             this.vehicle.deltaTime = 0;
             this.vehicle.time = t;
+
+            //this.supply.time = t;
         }
         else {
             this.vehicle.deltaTime = t - this.vehicle.time;
@@ -87,6 +95,8 @@ class MyScene extends CGFscene {
 
         this.checkKeys();
         this.vehicle.update(t);
+        if(this.supply.state == this.supply.SupplyStates.FALLING)
+            this.supply.update();
     }
 
     updateTexture() {
@@ -103,7 +113,7 @@ class MyScene extends CGFscene {
         this.loadIdentity();
         // Apply transformations corresponding to the camera position relative to the origin
         this.applyViewMatrix();
-        
+
         // Draw axis
         if (this.displayAxis)
             this.axis.display();
@@ -112,31 +122,43 @@ class MyScene extends CGFscene {
 
         // ---- BEGIN Primitive drawing section
 
-        if(this.displayCylinder){
+        if (this.displayCylinder) {
             // Testing purposes
             this.incompleteSphereMaterial.apply();
             this.cylinder.display();
         }
 
         //This sphere does not have defined texture coordinates
-        if(this.displayIncompleteSphere){
+        if (this.displayIncompleteSphere) {
             this.incompleteSphereMaterial.apply();
             this.incompleteSphere.display();
         }
 
-        if(this.displayCubeMap){
+        if (this.displayCubeMap) {
             this.cubemap.display();
         }
 
-        if(this.displayVehicle){
+        if (this.displayVehicle) {
             this.vehicle.display();
         }
 
+        if (this.displayTerrain) {
+            this.terrain.display();
+        }
+
+        if (this.displaySupplyOpened)
+            this.supplyOpened.display();
+
+        
+        if(this.supply.state == this.supply.SupplyStates.FALLING)
+            this.supply.display();
+
+        
 
         // ---- END Primitive drawing section
     }
 
-    checkKeys(){
+    checkKeys() {
         var text = "Keys pressed: ";
         var keysPressed = false;
 
@@ -144,14 +166,14 @@ class MyScene extends CGFscene {
         this.isMovingRight = false;
 
 
-        if(this.gui.isKeyPressed("KeyW") && !this.vehicle.autoPilot) {
-            text+= " W ";
-            keysPressed=true;
+        if (this.gui.isKeyPressed("KeyW") && !this.vehicle.autoPilot) {
+            text += " W ";
+            keysPressed = true;
 
             this.vehicle.accelerate(this.speedFactor * 0.01);
         }
-        if(this.gui.isKeyPressed("KeyA") && !this.vehicle.autoPilot) {    
-            text+=" A ";
+        if (this.gui.isKeyPressed("KeyA") && !this.vehicle.autoPilot) {
+            text += " A ";
             keysPressed = true;
             this.isMovingLeft = true;
             this.isMovingRight = false;
@@ -164,16 +186,16 @@ class MyScene extends CGFscene {
             this.vehicle.velocity = temp;
         }
 
-        if(this.gui.isKeyPressed("KeyS") && !this.vehicle.autoPilot) {
-            text+=" S ";
+        if (this.gui.isKeyPressed("KeyS") && !this.vehicle.autoPilot) {
+            text += " S ";
             keysPressed = true;
 
             this.vehicle.accelerate(-this.speedFactor * 0.01);
         }
 
-        if(this.gui.isKeyPressed("KeyD") && !this.vehicle.autoPilot) {
-            
-            text+=" D ";
+        if (this.gui.isKeyPressed("KeyD") && !this.vehicle.autoPilot) {
+
+            text += " D ";
             keysPressed = true;
             this.isMovingLeft = false;
             this.isMovingRight = true;
@@ -187,18 +209,18 @@ class MyScene extends CGFscene {
 
         }
 
-        if(this.gui.isKeyPressed("KeyR")) {
-            text+=" R ";
+        if (this.gui.isKeyPressed("KeyR")) {
+            text += " R ";
             keysPressed = true;
 
             this.vehicle.autoPilot = false;
             this.vehicle.deltaTime = 0;
-            
+
             this.vehicle.reset();
         }
 
-        if(this.gui.isKeyPressed("KeyP") && !this.vehicle.autoPilot) {
-            text+=" P ";
+        if (this.gui.isKeyPressed("KeyP") && !this.vehicle.autoPilot) {
+            text += " P ";
             keysPressed = true;
 
             this.vehicle.autoPilot = true;
@@ -206,9 +228,15 @@ class MyScene extends CGFscene {
 
         }
 
-        if(keysPressed) {
+        if(this.gui.isKeyPressed("KeyL") && !this.vehicle.autoPilot){
+            text += " L ";
+            keysPressed = true;
+
+            this.supply.drop(this.vehicle.position);
+        }
+
+        if (keysPressed) {
             console.log(text);
-            this.vehicle.update();
         }
     }
 }
