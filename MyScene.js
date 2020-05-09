@@ -30,8 +30,17 @@ class MyScene extends CGFscene {
         this.cubemap = new MyCubeMap(this);
         this.vehicle = new MyVehicle(this);
         this.terrain = new MyTerrain(this, 20);
-        this.supply = new MySupply(this);
-        this.supplyOpened = new MySupplyOpened(this);
+
+        //this.flag = new MyPlane(this.scene, 20);
+
+        this.supply1 = new MySupply(this);
+        this.supply2 = new MySupply(this);
+        this.supply3 = new MySupply(this);
+        this.supply4 = new MySupply(this);
+        this.supply5 = new MySupply(this);
+
+        this.supplies = [this.supply1, this.supply2, this.supply3, this.supply4, this.supply5];
+        this.supplyIndex = 0;
 
         // Textures and Materials
         this.incompleteSphereMaterial = new CGFappearance(this);
@@ -47,11 +56,10 @@ class MyScene extends CGFscene {
         this.displayAxis = true;
         this.displayIncompleteSphere = false;
         this.displayCylinder = false;
-        this.displayCubeMap = false;
-        this.displayVehicle = false;
+        this.displayCubeMap = true;
+        this.displayVehicle = true;
         this.displayTerrain = true;
         this.displaySupply = true;
-        this.displaySupplyOpened = false;
 
         this.selectedTexture = 0;
         this.textureIds = { 'Default': 0, 'Volcano': 1 };
@@ -63,7 +71,6 @@ class MyScene extends CGFscene {
         this.isMovingRight = false;
 
         this.motorAngle = 0;
-
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -86,17 +93,31 @@ class MyScene extends CGFscene {
             this.vehicle.deltaTime = 0;
             this.vehicle.time = t;
 
-            //this.supply.time = t;
         }
         else {
             this.vehicle.deltaTime = t - this.vehicle.time;
             this.vehicle.time = t;
         }
+        
+        for(var i = 0; i < 5; i++){
+            if(this.supplies[i].time == 0){
+                this.supplies[i].deltaTime = 0;
+                this.supplies.time = t;
+            }
+            else{
+                this.supplies[i].deltaTime = t - this.supplies[i].time;
+                this.supplies[i].time = t;            
+            }
+        }
 
         this.checkKeys();
         this.vehicle.update(t);
-        if(this.supply.state == this.supply.SupplyStates.FALLING)
-            this.supply.update();
+
+        for(var i = 0; i < 5; i++){
+            if(this.supplies[i].state == this.supplies[i].SupplyStates.FALLING)
+                this.supplies[i].update(t);
+        }
+        
     }
 
     updateTexture() {
@@ -145,13 +166,11 @@ class MyScene extends CGFscene {
         if (this.displayTerrain) {
             this.terrain.display();
         }
-
-        if (this.displaySupplyOpened)
-            this.supplyOpened.display();
-
         
-        if(this.supply.state == this.supply.SupplyStates.FALLING)
-            this.supply.display();
+        for (var i = 0; i < 5; i++)
+        {
+            this.supplies[i].display();
+        }
 
         
 
@@ -215,6 +234,11 @@ class MyScene extends CGFscene {
 
             this.vehicle.autoPilot = false;
             this.vehicle.deltaTime = 0;
+            for (var i = 0; i < 5; i++){
+                this.supplies[i].deltaTime = 0;
+                this.supplies[i].reset();
+            }
+            this.supplyIndex = 0;
 
             this.vehicle.reset();
         }
@@ -228,11 +252,13 @@ class MyScene extends CGFscene {
 
         }
 
-        if(this.gui.isKeyPressed("KeyL") && !this.vehicle.autoPilot){
+        if(this.gui.isKeyPressed("KeyL") && !this.vehicle.autoPilot && this.supplyIndex < 5){
             text += " L ";
             keysPressed = true;
 
-            this.supply.drop(this.vehicle.position);
+            //this.supply.drop(this.vehicle.position);
+            this.supplies[this.supplyIndex].drop(this.vehicle.position);
+            this.supplyIndex++;
         }
 
         if (keysPressed) {

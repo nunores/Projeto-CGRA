@@ -363,7 +363,6 @@ class MyVehicle extends CGFobject {
 			this.time = t;
 		}
 		else {
-			console.log("SPEED: ", this.velocity);
 			this.position.x += this.velocity * Math.sin(this.orientationAngle * Math.PI / 180);
 			this.position.z += this.velocity * Math.cos(this.orientationAngle * Math.PI / 180);
 		}

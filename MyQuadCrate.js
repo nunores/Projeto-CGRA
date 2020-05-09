@@ -22,9 +22,9 @@ class MyQuadCrate extends CGFobject {
 		//Counter-clockwise reference of vertices
 		this.indices = [
 			0, 1, 2,
-			//2, 1, 0,
+			2, 1, 0,
 			1, 3, 2,
-			//2, 3, 1
+			2, 3, 1
 		];
 
 		//Facing Z positive

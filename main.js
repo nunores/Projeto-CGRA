@@ -4,7 +4,7 @@ serialInclude = function (a) { var b = console, c = serialInclude.l; if (a.lengt
 
 serialInclude(['../lib/CGF.js', 'MyScene.js', 'MyInterface.js', 'MySphere.js',
     'MyCylinder.js', 'MyCubeMap.js', 'MyQuad.js', 'MyVehicle.js', 'MyPropeller.js', 
-    'MyBlade.js', 'MyTerrain.js', 'MyPlane.js', 'MySupply.js', 'MySupplyOpened.js', 'MyQuadCrate.js',
+    'MyBlade.js', 'MyTerrain.js', 'MyPlane.js', 'MySupply.js', 'MyQuadCrate.js',
 
     main = function () {
         var app = new CGFapplication(document.body);

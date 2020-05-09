@@ -17,13 +17,18 @@ class MySupply extends CGFobject {
 
         this.drop_position = {
 			'x': 0, 'y': 0, 'z': 0
-		}
+        }
+
+        this.velocity = 11.3 / 3;
+        this.time = 0;
+        this.deltaTime = 0;
+        
 
 		this.initBuffers();
 	}
 	initBuffers() {
 		var scene = this.scene;
-		this.quadCrate = new MyQuadCrate(scene);
+        this.quadCrate = new MyQuadCrate(scene);
 		this.initMaterials();
 	}
 
@@ -37,9 +42,20 @@ class MySupply extends CGFobject {
         this.crate_side.setTextureWrap('REPEAT', 'REPEAT');
     }
     
-    update(){
-        if(this.drop_position.y > -9) // "Virtual floor" as we lowered the terrain
-            this.drop_position.y -= 0.2;
+    update(t){
+        this.deltaTime = this.deltaTime / 1000;
+        if(this.drop_position.y > -13.6)// "Virtual floor" as we lowered the terrain
+        {
+            this.drop_position.y -= this.deltaTime * this.velocity;
+            this.time = t;
+            
+        }
+        else
+        {
+            this.land();
+        }
+        
+            
     }
 
     drop(position){
@@ -50,12 +66,13 @@ class MySupply extends CGFobject {
         this.state = this.SupplyStates.FALLING;
 
     }
+    
 	display() {
         var scene = this.scene;
 
-        // Top
         if (this.state == this.SupplyStates.FALLING)
         {
+            // Top
             scene.pushMatrix();
 
             
@@ -145,7 +162,84 @@ class MySupply extends CGFobject {
             scene.popMatrix();
             scene.popMatrix();
         }
-		
+        else if (this.state == this.SupplyStates.LANDED)
+        {
+            scene.pushMatrix();
+            scene.translate(this.drop_position.x, this.drop_position.y + 9, this.drop_position.z);
+            scene.scale(0.5,0.5,0.5);
+            
 
-	}
+
+            scene.pushMatrix();
+            scene.translate(0, -0.25, 0);
+            scene.rotate(-Math.PI/2, 1, 0, 0);
+            this.crate_side.apply();
+            
+            scene.gl.texParameteri(scene.gl.TEXTURE_2D, scene.gl.TEXTURE_MAG_FILTER, scene.gl.NEAREST);
+                
+            this.quadCrate.display();
+            scene.popMatrix();
+
+
+            scene.pushMatrix();
+            scene.translate(0, -0.25, 1);
+            scene.rotate(-Math.PI/2, 1, 0, 0);
+            this.crate_side.apply();
+            
+            scene.gl.texParameteri(scene.gl.TEXTURE_2D, scene.gl.TEXTURE_MAG_FILTER, scene.gl.NEAREST);
+                
+            this.quadCrate.display();
+            scene.popMatrix();
+
+            scene.pushMatrix();
+            scene.translate(0, -0.25, -1);
+            scene.rotate(-Math.PI/2, 1, 0, 0);
+            this.crate_side.apply();
+            
+            scene.gl.texParameteri(scene.gl.TEXTURE_2D, scene.gl.TEXTURE_MAG_FILTER, scene.gl.NEAREST);
+                
+            this.quadCrate.display();
+            scene.popMatrix();
+
+            scene.pushMatrix();
+            scene.translate(1, -0.25, 0);
+            scene.rotate(-Math.PI/2, 1, 0, 0);
+            this.crate_side.apply();
+            
+            scene.gl.texParameteri(scene.gl.TEXTURE_2D, scene.gl.TEXTURE_MAG_FILTER, scene.gl.NEAREST);
+                
+            this.quadCrate.display();
+            scene.popMatrix();
+
+            scene.pushMatrix();
+            scene.translate(-1, -0.25, 0);
+            scene.rotate(-Math.PI/2, 1, 0, 0);
+            this.crate_side.apply();
+            
+            scene.gl.texParameteri(scene.gl.TEXTURE_2D, scene.gl.TEXTURE_MAG_FILTER, scene.gl.NEAREST);
+                
+            this.quadCrate.display();
+            scene.popMatrix();
+
+            scene.pushMatrix();
+            scene.translate(-2, -0.25, 0);
+            scene.rotate(-Math.PI/2, 1, 0, 0);
+            this.crate_side.apply();
+            
+            scene.gl.texParameteri(scene.gl.TEXTURE_2D, scene.gl.TEXTURE_MAG_FILTER, scene.gl.NEAREST);
+                
+            this.quadCrate.display();
+            scene.popMatrix();
+
+            scene.popMatrix();
+        }
+
+    }
+    land()
+    {
+        this.state = this.SupplyStates.LANDED;
+    }
+    reset(){
+        this.state = this.SupplyStates.INACTIVE;
+    }
 }

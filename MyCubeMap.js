@@ -90,7 +90,7 @@ class MyCubeMap extends CGFobject {
 		scene.rotate(-Math.PI / 2, 1, 0, 0);
 		this.mineTopMaterial.apply();
 
-		scene.gl.texParameteri(scene.gl.TEXTURE_2D, scene.gl.TEXTURE_MAG_FILTER, scene.gl.NEAREST);
+		//scene.gl.texParameteri(scene.gl.TEXTURE_2D, scene.gl.TEXTURE_MAG_FILTER, scene.gl.NEAREST);
 
 		this.quad.display();
 
@@ -105,7 +105,7 @@ class MyCubeMap extends CGFobject {
 		scene.rotate(Math.PI / 2, 1, 0, 0);
 		this.mineBottomMaterial.apply();
 
-		scene.gl.texParameteri(scene.gl.TEXTURE_2D, scene.gl.TEXTURE_MAG_FILTER, scene.gl.NEAREST);
+		//scene.gl.texParameteri(scene.gl.TEXTURE_2D, scene.gl.TEXTURE_MAG_FILTER, scene.gl.NEAREST);
 
 		this.quad.display();
 
@@ -119,7 +119,7 @@ class MyCubeMap extends CGFobject {
 		scene.rotate(-Math.PI / 2, 0, 1, 0);
 		this.mineLeftMaterial.apply();
 
-		scene.gl.texParameteri(scene.gl.TEXTURE_2D, scene.gl.TEXTURE_MAG_FILTER, scene.gl.NEAREST);
+		//scene.gl.texParameteri(scene.gl.TEXTURE_2D, scene.gl.TEXTURE_MAG_FILTER, scene.gl.NEAREST);
 
 		this.quad.display();
 
@@ -133,7 +133,7 @@ class MyCubeMap extends CGFobject {
 		scene.rotate(Math.PI / 2, 0, 1, 0);
 		this.mineRightMaterial.apply();
 
-		scene.gl.texParameteri(scene.gl.TEXTURE_2D, scene.gl.TEXTURE_MAG_FILTER, scene.gl.NEAREST);
+		//scene.gl.texParameteri(scene.gl.TEXTURE_2D, scene.gl.TEXTURE_MAG_FILTER, scene.gl.NEAREST);
 
 		this.quad.display();
 
@@ -146,7 +146,7 @@ class MyCubeMap extends CGFobject {
 		scene.translate(0, 0, 0.5);
 		this.mineFrontMaterial.apply();
 
-		scene.gl.texParameteri(scene.gl.TEXTURE_2D, scene.gl.TEXTURE_MAG_FILTER, scene.gl.NEAREST);
+		//scene.gl.texParameteri(scene.gl.TEXTURE_2D, scene.gl.TEXTURE_MAG_FILTER, scene.gl.NEAREST);
 
 		this.quad.display();
 
@@ -160,7 +160,7 @@ class MyCubeMap extends CGFobject {
 		scene.rotate(Math.PI, 0, 1, 0);
 		this.mineBackMaterial.apply();
 
-		scene.gl.texParameteri(scene.gl.TEXTURE_2D, scene.gl.TEXTURE_MAG_FILTER, scene.gl.NEAREST);
+		//scene.gl.texParameteri(scene.gl.TEXTURE_2D, scene.gl.TEXTURE_MAG_FILTER, scene.gl.NEAREST);
 
 
 		this.quad.display();
@@ -189,6 +189,6 @@ class MyCubeMap extends CGFobject {
 			this.mineRightMaterial.loadTexture("images/split_skybox/split_right.png");
 			this.mineTopMaterial.loadTexture("images/split_skybox/split_top.png");
 		}
-		console.log(scene.selectedTexture);
+		console.log(this.scene.selectedTexture);
 	}
 }
