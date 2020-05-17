@@ -26,6 +26,8 @@ class MyVehicle extends CGFobject {
 		this.motorSphere = new MySphere(scene, 40, 40);
 		this.propeller = new MyPropeller(scene);
 		this.blade = new MyBlade(scene);
+		this.flag = new MyPlane(scene, 20);
+		this.connector = new MyCylinder(scene, 20);
 
 		this.perpendicular = 0;
 		this.direction_vector_x = 0;
@@ -66,6 +68,11 @@ class MyVehicle extends CGFobject {
 		this.cockpitMaterial.setSpecular(225 / 1.4 / 255, 198 / 1.4 / 255, 153 / 1.4 / 255, 1);
 		this.cockpitMaterial.setShininess(6.0);
 
+		this.flagMaterial = new CGFtexture(this.scene, "images/flag.png");
+		
+		this.flagShader = new CGFshader(this.scene.gl, "shaders/flag.vert", "shaders/flag.frag");
+        this.flagShader.setUniformsValues({ flagMap: 5 })
+        this.flagShader.setUniformsValues({ speedFactor: this.velocity });
 
 	}
 	turn(val) {
@@ -286,6 +293,28 @@ class MyVehicle extends CGFobject {
 
 		this.scene.popMatrix();
 
+		//Flag
+
+		this.scene.pushMatrix();
+
+		this.scene.translate(this.position.x, this.position.y, this.position.z);
+		this.scene.rotate(this.orientationAngle * Math.PI / 180, 0, 1, 0) // Ângulo referente ao eixo dos YY
+		
+		this.scene.setActiveShader(this.flagShader);
+		this.flagMaterial.bind(5);
+		this.scene.translate(0,10,-3);
+		this.scene.rotate(Math.PI/2,0,1,0);
+		this.scene.scale(1.75, 1, 1);
+		this.flag.display();
+		this.scene.popMatrix();
+		this.scene.setActiveShader(this.scene.defaultShader);
+
+		// Connectors
+
+
+
+
+
 		// Motor Propeller
 
 		this.scene.pushMatrix();
@@ -350,7 +379,7 @@ class MyVehicle extends CGFobject {
 	}
 	update(t) {
 		this.scene.motorAngle += this.velocity * 6;
-
+		this.flagShader.setUniformsValues({ timeFactor: this.deltaTime });
 		if (this.autoPilot) {
 			this.deltaTime = this.deltaTime / 1000;
 			this.orientationAngle += this.deltaTime * this.angularSpeed;

@@ -92,7 +92,6 @@ class MyScene extends CGFscene {
         if (this.vehicle.time == 0) {
             this.vehicle.deltaTime = 0;
             this.vehicle.time = t;
-
         }
         else {
             this.vehicle.deltaTime = t - this.vehicle.time;
