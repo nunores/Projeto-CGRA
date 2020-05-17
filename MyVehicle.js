@@ -26,7 +26,7 @@ class MyVehicle extends CGFobject {
 		this.motorSphere = new MySphere(scene, 40, 40);
 		this.propeller = new MyPropeller(scene);
 		this.blade = new MyBlade(scene);
-		this.flag = new MyPlane(scene, 20);
+		this.flag = new MyPlaneFlag(scene, 20);
 		this.connector = new MyCylinder(scene, 20);
 
 		this.perpendicular = 0;

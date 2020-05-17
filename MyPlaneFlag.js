@@ -1,6 +1,5 @@
-
 /** Represents a plane with nrDivs divisions along both axis, with center at (0,0) */
-class MyPlane extends CGFobject{
+class MyPlaneFlag extends CGFobject{
 	constructor(scene, nrDivs, minS, maxS, minT, maxT) {
 		super(scene);
 		// nrDivs = 1 if not provided
@@ -45,7 +44,13 @@ class MyPlane extends CGFobject{
 				this.indices.push(ind + this.nrDivs);
 				this.indices.push(ind);
 			}
-		}
+        }
+        
+        for (var i = this.indices.length; i >= 0; i--){
+            this.indices.push(this.indices[i]);
+        }
+
+
 		this.primitiveType = this.scene.gl.TRIANGLE_STRIP;
 		this.initGLBuffers();
 	}
@@ -60,5 +65,46 @@ class MyPlane extends CGFobject{
 	};
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

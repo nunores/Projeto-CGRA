@@ -30,6 +30,7 @@ class MyScene extends CGFscene {
         this.cubemap = new MyCubeMap(this);
         this.vehicle = new MyVehicle(this);
         this.terrain = new MyTerrain(this, 20);
+        this.billboard = new MyBillboard(this);
 
         //this.flag = new MyPlane(this.scene, 20);
 
@@ -40,7 +41,7 @@ class MyScene extends CGFscene {
         this.supply5 = new MySupply(this);
 
         this.supplies = [this.supply1, this.supply2, this.supply3, this.supply4, this.supply5];
-        this.supplyIndex = 0;
+        this.nSuppliesDelivered = 0;
 
         // Textures and Materials
         this.incompleteSphereMaterial = new CGFappearance(this);
@@ -60,6 +61,7 @@ class MyScene extends CGFscene {
         this.displayVehicle = true;
         this.displayTerrain = true;
         this.displaySupply = true;
+        this.displayBillboard = true;
 
         this.selectedTexture = 0;
         this.textureIds = { 'Default': 0, 'Volcano': 1 };
@@ -116,6 +118,8 @@ class MyScene extends CGFscene {
             if(this.supplies[i].state == this.supplies[i].SupplyStates.FALLING)
                 this.supplies[i].update(t);
         }
+
+        this.billboard.update();
         
     }
 
@@ -164,6 +168,10 @@ class MyScene extends CGFscene {
 
         if (this.displayTerrain) {
             this.terrain.display();
+        }
+
+        if(this.displayBillboard){
+            this.billboard.display();
         }
         
         for (var i = 0; i < 5; i++)
@@ -237,7 +245,7 @@ class MyScene extends CGFscene {
                 this.supplies[i].deltaTime = 0;
                 this.supplies[i].reset();
             }
-            this.supplyIndex = 0;
+            this.nSuppliesDelivered = 0;
 
             this.vehicle.reset();
         }
@@ -251,13 +259,13 @@ class MyScene extends CGFscene {
 
         }
 
-        if(this.gui.isKeyPressed("KeyL") && !this.vehicle.autoPilot && this.supplyIndex < 5){
+        if(this.gui.isKeyPressed("KeyL") && !this.vehicle.autoPilot && this.nSuppliesDelivered < 5){
             text += " L ";
             keysPressed = true;
 
             //this.supply.drop(this.vehicle.position);
-            this.supplies[this.supplyIndex].drop(this.vehicle.position);
-            this.supplyIndex++;
+            this.supplies[this.nSuppliesDelivered].drop(this.vehicle.position);
+            this.nSuppliesDelivered++;
         }
 
         if (keysPressed) {

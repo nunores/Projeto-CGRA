@@ -14,7 +14,7 @@ varying vec2 vTextureCoord;
 uniform sampler2D flagMap;
 
 uniform float timeFactor;
-//uniform float speedFactor;
+uniform float speedFactor;
 
 void main() {
   vTextureCoord = aTextureCoord;
@@ -22,8 +22,7 @@ void main() {
   vec3 offset = vec3(0.0,0.0,0.0);
 
   if (aVertexPosition.x > -0.49)
-    offset.z = -cos((-aVertexPosition.x + timeFactor + (0.5 * 0.15))* 20.0) * 0.05;
-    //offset.z = -cos((-aVertexPosition.x + timeFactor * (0.5 * 0.15))* 20.0) * 0.05;
+    offset.z += -cos((-aVertexPosition.x + timeFactor + (0.5 + speedFactor * 0.15))* 20.0) * 0.05;
     
   gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition + offset, 1.0);
 
