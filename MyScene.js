@@ -250,6 +250,15 @@ class MyScene extends CGFscene {
             this.vehicle.reset();
         }
 
+        if (this.gui.isKeyPressed("KeyP") && this.vehicle.autoPilot) {
+            text += " P ";
+            keysPressed = true;
+
+            this.vehicle.autoPilot = false;
+            this.vehicle.velocity = 0;
+        }
+        else{
+
         if (this.gui.isKeyPressed("KeyP") && !this.vehicle.autoPilot) {
             text += " P ";
             keysPressed = true;
@@ -258,6 +267,9 @@ class MyScene extends CGFscene {
             this.vehicle.calculateCenter();
 
         }
+    }
+
+        
 
         if(this.gui.isKeyPressed("KeyL") && !this.vehicle.autoPilot && this.nSuppliesDelivered < 5){
             text += " L ";
